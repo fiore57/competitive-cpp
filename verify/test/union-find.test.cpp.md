@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-12 17:19:20+09:00
+    - Last commit date: 2020-06-13 02:42:27+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/library/_template.cpp.html">library/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/library/union-find.cpp.html">library/union-find.cpp</a>
+* :heavy_check_mark: <a href="../../library/library/union-find.cpp.html">UnionFind <small>(library/union-find.cpp)</small></a>
 
 
 ## Code
@@ -255,53 +255,42 @@ signed main()
     return 0;
 }
 #line 1 "library/union-find.cpp"
-class UnionFind
-{
+/**
+ * @brief UnionFind
+ */
+class UnionFind {
 public:
-    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1)
-    {
+    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
         rep(i, n) par[i] = i;
     }
 
-    int find(const int x)
-    {
+    int find(const int x) {
         if (par[x] == x)
             return x;
         return par[x] = find(par[x]);
     }
 
-    void unite(int x, int y)
-    {
+    void unite(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y)
             return;
 
-        if (rank[x] < rank[y])
-        {
+        if (rank[x] < rank[y]) {
             par[x] = y;
             sz[y] += sz[x];
-        }
-        else
-        {
+        } else {
             par[y] = x;
             sz[x] += sz[y];
-            if (rank[x] == rank[y])
-            {
+            if (rank[x] == rank[y]) {
                 ++rank[x];
             }
         }
     }
 
-    bool same(const int x, const int y)
-    {
-        return find(x) == find(y);
-    }
+    bool same(const int x, const int y) { return find(x) == find(y); }
 
-    int size(const int x)
-    {
-        return sz[find(x)];
-    }
+    int size(const int x) { return sz[find(x)]; }
 
 private:
     vint par, rank, sz;

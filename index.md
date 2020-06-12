@@ -39,12 +39,14 @@ layout: default
 ### library
 
 * :heavy_check_mark: <a href="library/library/_template.cpp.html">library/_template.cpp</a>
-* :heavy_check_mark: <a href="library/library/union-find.cpp.html">library/union-find.cpp</a>
+* :heavy_check_mark: <a href="library/library/scc.cpp.html">強連結成分分解 <small>(library/scc.cpp)</small></a>
+* :heavy_check_mark: <a href="library/library/union-find.cpp.html">UnionFind <small>(library/union-find.cpp)</small></a>
 
 
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/example.test.cpp.html">test/example.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
