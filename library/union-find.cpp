@@ -36,5 +36,5 @@ public:
     int size(const int x) { return sz[find(x)]; }
 
 private:
-    vint par, rank, sz;
+    vector<int> par, rank, sz;
 };
