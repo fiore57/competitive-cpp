@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: test/scc.test.cpp
+# :heavy_check_mark: test/scc.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/scc.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:18:43+09:00
+    - Last commit date: 2020-06-13 03:26:31+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/graph/scc.cpp.html">強連結成分分解 <small>(graph/scc.cpp)</small></a>
-* :x: <a href="../../library/template/template.cpp.html">テンプレート <small>(template/template.cpp)</small></a>
+* :heavy_check_mark: <a href="../../library/_template/template.cpp.html">テンプレート <small>(_template/template.cpp)</small></a>
+* :heavy_check_mark: <a href="../../library/graph/scc.cpp.html">強連結成分分解 <small>(graph/scc.cpp)</small></a>
 
 
 ## Code
@@ -50,8 +50,8 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
+#include "../_template/template.cpp"
 #include "../graph/scc.cpp"
-#include "../template/template.cpp"
 
 void Main() {
     int V = in(), E = in();
@@ -81,71 +81,7 @@ void Main() {
 #line 1 "test/scc.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#line 1 "graph/scc.cpp"
-/**
- * @brief 強連結成分分解
- */
-using UnWeightedGraph = vector<vector<int>>;
-template <typename G>
-class StronglyConnectedComponents {
-    const G &g;
-    UnWeightedGraph gg, rg;
-    vector<int> comp, order, used;
-
-public:
-    StronglyConnectedComponents(G &g)
-        : g(g), gg(g.size()), rg(g.size()), comp(g.size(), -1),
-          used(g.size(), false) {
-        rep(i, g.size()) {
-            for (const auto e : g[i]) {
-                gg[i].push_back(e);
-                rg[e].push_back(i);
-            }
-        }
-    }
-
-    int operator[](const int k) const { return comp[k]; }
-
-    void dfs(const int idx) {
-        if (used[idx])
-            return;
-        used[idx] = true;
-        for (const auto to : gg[idx])
-            dfs(to);
-        order.push_back(idx);
-    }
-
-    void rdfs(const int idx, const int cnt) {
-        if (comp[idx] != -1)
-            return;
-        comp[idx] = cnt;
-        for (const auto to : rg[idx])
-            rdfs(to, cnt);
-    }
-
-    void build(UnWeightedGraph &t) {
-        rep(i, gg.size()) dfs(i);
-        reverse(ALL(order));
-        int ptr = 0;
-        for (const auto i : order) {
-            if (comp[i] == -1) {
-                rdfs(i, ptr);
-                ++ptr;
-            }
-        }
-
-        t.resize(ptr);
-        rep(i, g.size()) {
-            for (const auto to : g[i]) {
-                int x = comp[i], y = comp[to];
-                if (x == y)
-                    continue;
-                t[x].push_back(y);
-            }
-        }
-    }
-};
-#line 1 "template/template.cpp"
+#line 1 "_template/template.cpp"
 /**
  * @brief テンプレート
  */
@@ -310,6 +246,70 @@ signed main() {
     Main();
     return 0;
 }
+#line 1 "graph/scc.cpp"
+/**
+ * @brief 強連結成分分解
+ */
+using UnWeightedGraph = vector<vector<int>>;
+template <typename G>
+class StronglyConnectedComponents {
+    const G &g;
+    UnWeightedGraph gg, rg;
+    vector<int> comp, order, used;
+
+public:
+    StronglyConnectedComponents(G &g)
+        : g(g), gg(g.size()), rg(g.size()), comp(g.size(), -1),
+          used(g.size(), false) {
+        rep(i, g.size()) {
+            for (const auto e : g[i]) {
+                gg[i].push_back(e);
+                rg[e].push_back(i);
+            }
+        }
+    }
+
+    int operator[](const int k) const { return comp[k]; }
+
+    void dfs(const int idx) {
+        if (used[idx])
+            return;
+        used[idx] = true;
+        for (const auto to : gg[idx])
+            dfs(to);
+        order.push_back(idx);
+    }
+
+    void rdfs(const int idx, const int cnt) {
+        if (comp[idx] != -1)
+            return;
+        comp[idx] = cnt;
+        for (const auto to : rg[idx])
+            rdfs(to, cnt);
+    }
+
+    void build(UnWeightedGraph &t) {
+        rep(i, gg.size()) dfs(i);
+        reverse(ALL(order));
+        int ptr = 0;
+        for (const auto i : order) {
+            if (comp[i] == -1) {
+                rdfs(i, ptr);
+                ++ptr;
+            }
+        }
+
+        t.resize(ptr);
+        rep(i, g.size()) {
+            for (const auto to : g[i]) {
+                int x = comp[i], y = comp[to];
+                if (x == y)
+                    continue;
+                t[x].push_back(y);
+            }
+        }
+    }
+};
 #line 5 "test/scc.test.cpp"
 
 void Main() {

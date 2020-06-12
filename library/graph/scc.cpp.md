@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: 強連結成分分解 <small>(graph/scc.cpp)</small>
+# :heavy_check_mark: 強連結成分分解 <small>(graph/scc.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 
 
 ## Code

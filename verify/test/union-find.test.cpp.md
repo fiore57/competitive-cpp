@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: test/union-find.test.cpp
+# :heavy_check_mark: test/union-find.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:18:43+09:00
+    - Last commit date: 2020-06-13 03:26:31+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
-* :x: <a href="../../library/template/template.cpp.html">テンプレート <small>(template/template.cpp)</small></a>
+* :heavy_check_mark: <a href="../../library/_template/template.cpp.html">テンプレート <small>(_template/template.cpp)</small></a>
+* :heavy_check_mark: <a href="../../library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
 
 
 ## Code
@@ -50,8 +50,8 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
+#include "../_template/template.cpp"
 #include "../structure/union-find.cpp"
-#include "../template/template.cpp"
 
 void Main() {
     int n = in(), q = in();
@@ -73,48 +73,7 @@ void Main() {
 #line 1 "test/union-find.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#line 1 "structure/union-find.cpp"
-/**
- * @brief UnionFind
- */
-class UnionFind {
-public:
-    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
-        rep(i, n) par[i] = i;
-    }
-
-    int find(const int x) {
-        if (par[x] == x)
-            return x;
-        return par[x] = find(par[x]);
-    }
-
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
-        if (x == y)
-            return;
-
-        if (rank[x] < rank[y]) {
-            par[x] = y;
-            sz[y] += sz[x];
-        } else {
-            par[y] = x;
-            sz[x] += sz[y];
-            if (rank[x] == rank[y]) {
-                ++rank[x];
-            }
-        }
-    }
-
-    bool same(const int x, const int y) { return find(x) == find(y); }
-
-    int size(const int x) { return sz[find(x)]; }
-
-private:
-    vector<int> par, rank, sz;
-};
-#line 1 "template/template.cpp"
+#line 1 "_template/template.cpp"
 /**
  * @brief テンプレート
  */
@@ -279,6 +238,47 @@ signed main() {
     Main();
     return 0;
 }
+#line 1 "structure/union-find.cpp"
+/**
+ * @brief UnionFind
+ */
+class UnionFind {
+public:
+    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
+        rep(i, n) par[i] = i;
+    }
+
+    int find(const int x) {
+        if (par[x] == x)
+            return x;
+        return par[x] = find(par[x]);
+    }
+
+    void unite(int x, int y) {
+        x = find(x);
+        y = find(y);
+        if (x == y)
+            return;
+
+        if (rank[x] < rank[y]) {
+            par[x] = y;
+            sz[y] += sz[x];
+        } else {
+            par[y] = x;
+            sz[x] += sz[y];
+            if (rank[x] == rank[y]) {
+                ++rank[x];
+            }
+        }
+    }
+
+    bool same(const int x, const int y) { return find(x) == find(y); }
+
+    int size(const int x) { return sz[find(x)]; }
+
+private:
+    vector<int> par, rank, sz;
+};
 #line 5 "test/union-find.test.cpp"
 
 void Main() {

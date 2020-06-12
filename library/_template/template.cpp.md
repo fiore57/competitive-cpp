@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: テンプレート <small>(template/template.cpp)</small>
+# :heavy_check_mark: テンプレート <small>(_template/template.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#66f6181bcb4cff4cd38fbc804a036db6">template</a>
-* <a href="{{ site.github.repository_url }}/blob/master/template/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:18:43+09:00
+* category: <a href="../../index.html#dd743839bbbccf6b9f92c191458344b7">_template</a>
+* <a href="{{ site.github.repository_url }}/blob/master/_template/template.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-13 03:26:31+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
-* :x: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
 ## Code
@@ -217,7 +217,7 @@ signed main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "template/template.cpp"
+#line 1 "_template/template.cpp"
 /**
  * @brief テンプレート
  */

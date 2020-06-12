@@ -34,30 +34,30 @@ layout: default
 
 ## Library Files
 
+<div id="dd743839bbbccf6b9f92c191458344b7"></div>
+
+### _template
+
+* :heavy_check_mark: <a href="library/_template/template.cpp.html">テンプレート <small>(_template/template.cpp)</small></a>
+
+
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
 
 ### graph
 
-* :x: <a href="library/graph/scc.cpp.html">強連結成分分解 <small>(graph/scc.cpp)</small></a>
+* :heavy_check_mark: <a href="library/graph/scc.cpp.html">強連結成分分解 <small>(graph/scc.cpp)</small></a>
 
 
 <div id="07414f4e15ca943e6cde032dec85d92f"></div>
 
 ### structure
 
-* :x: <a href="library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
-
-
-<div id="66f6181bcb4cff4cd38fbc804a036db6"></div>
-
-### template
-
-* :x: <a href="library/template/template.cpp.html">テンプレート <small>(template/template.cpp)</small></a>
+* :heavy_check_mark: <a href="library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
 
 
 ## Verify Files
 
-* :x: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
-* :x: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
