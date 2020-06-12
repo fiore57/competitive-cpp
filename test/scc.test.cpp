@@ -1,7 +1,7 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#include "../library/_template.cpp"
-#include "../library/scc.cpp"
+#include "../graph/scc.cpp"
+#include "../template/template.cpp"
 
 void Main() {
     int V = in(), E = in();
