@@ -1,3 +1,6 @@
+/**
+ * @brief テンプレート
+ */
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -40,25 +43,21 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v)
-{
+ostream &operator<<(ostream &os, vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p)
-{
+ostream &operator<<(ostream &os, pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m)
-{
+ostream &operator<<(ostream &os, map<T, U> &m) {
     bool first = true;
     os << "{";
-    for (const auto &e : m)
-    {
+    for (const auto &e : m) {
         if (!first)
             os << ", ";
         os << "{" << e.first << ": " << e.second << "}";
@@ -68,12 +67,10 @@ ostream &operator<<(ostream &os, map<T, U> &m)
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s)
-{
+ostream &operator<<(ostream &os, set<T> &s) {
     os << "{";
     bool first = true;
-    for (const auto &e : s)
-    {
+    for (const auto &e : s) {
         if (!first)
             os << ", ";
         os << e;
@@ -83,62 +80,51 @@ ostream &operator<<(ostream &os, set<T> &s)
     return os;
 }
 template <typename T>
-T dup(T x, T y)
-{
+T dup(T x, T y) {
     return (x + y - 1) / y;
 };
 template <typename A, size_t N, typename T>
-inline void arrayFill(A (&array)[N], const T &val)
-{
+inline void arrayFill(A (&array)[N], const T &val) {
     std::fill((T *)array, (T *)(array + N), val);
 }
 template <class T>
-inline bool chmax(T &a, T b)
-{
-    if (a < b)
-    {
+inline bool chmax(T &a, T b) {
+    if (a < b) {
         a = b;
         return true;
     }
     return false;
 }
 template <class T>
-inline bool chmin(T &a, T b)
-{
-    if (a > b)
-    {
+inline bool chmin(T &a, T b) {
+    if (a > b) {
         a = b;
         return true;
     }
     return false;
 }
-struct in
-{
+struct in {
     const size_t n = 0;
     in() = default;
     in(size_t n) : n(n){};
     template <typename T>
-    operator T()
-    {
+    operator T() {
         T ret;
         cin >> ret;
         return ret;
     }
     template <typename T>
-    operator vector<T>()
-    {
+    operator vector<T>() {
         assert(n != 0);
         vector<T> ret(n);
-        for (T &x : ret)
-        {
+        for (T &x : ret) {
             T tmp = in();
             x = tmp;
         }
         return ret;
     }
     template <typename T, typename U>
-    operator pair<T, U>()
-    {
+    operator pair<T, U>() {
         pair<T, U> ret;
         ret.first = in();
         ret.second = in();
@@ -146,8 +132,7 @@ struct in
     }
 };
 template <typename T>
-inline void out(const T x)
-{
+inline void out(const T x) {
     std::cout << x << '\n';
 };
 
@@ -170,8 +155,7 @@ constexpr std::int64_t LINF = 1001001001001001001;
 
 void Main();
 
-signed main()
-{
+signed main() {
     std::cin.tie(nullptr);
     std::ios_base::sync_with_stdio(false);
     std::cout << std::fixed << std::setprecision(15);
