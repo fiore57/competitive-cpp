@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: UnionFind <small>(library/union-find.cpp)</small>
+# :x: UnionFind <small>(structure/union-find.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#d521f765a49c72507257a2620612ee96">library</a>
-* <a href="{{ site.github.repository_url }}/blob/master/library/union-find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 02:42:27+09:00
+* category: <a href="../../index.html#07414f4e15ca943e6cde032dec85d92f">structure</a>
+* <a href="{{ site.github.repository_url }}/blob/master/structure/union-find.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-13 03:18:43+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
+* :x: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
 ## Code
@@ -84,7 +84,7 @@ public:
     int size(const int x) { return sz[find(x)]; }
 
 private:
-    vint par, rank, sz;
+    vector<int> par, rank, sz;
 };
 ```
 {% endraw %}
@@ -92,7 +92,7 @@ private:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "library/union-find.cpp"
+#line 1 "structure/union-find.cpp"
 /**
  * @brief UnionFind
  */
@@ -131,7 +131,7 @@ public:
     int size(const int x) { return sz[find(x)]; }
 
 private:
-    vint par, rank, sz;
+    vector<int> par, rank, sz;
 };
 
 ```

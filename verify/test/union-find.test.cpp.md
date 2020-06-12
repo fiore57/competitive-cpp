@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/union-find.test.cpp
+# :x: test/union-find.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 02:42:27+09:00
+    - Last commit date: 2020-06-13 03:18:43+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/library/_template.cpp.html">library/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/library/union-find.cpp.html">UnionFind <small>(library/union-find.cpp)</small></a>
+* :x: <a href="../../library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
+* :x: <a href="../../library/template/template.cpp.html">テンプレート <small>(template/template.cpp)</small></a>
 
 
 ## Code
@@ -48,16 +48,15 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#include "../library/_template.cpp"
-#include "../library/union-find.cpp"
+#define PROBLEM                                                                \
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
+#include "../structure/union-find.cpp"
+#include "../template/template.cpp"
 
-void Main()
-{
+void Main() {
     int n = in(), q = in();
     UnionFind uf(n);
-    rep(i, q)
-    {
+    rep(i, q) {
         int com = in(), x = in(), y = in();
         if (com == 0)
             uf.unite(x, y);
@@ -72,8 +71,53 @@ void Main()
 {% raw %}
 ```cpp
 #line 1 "test/union-find.test.cpp"
-#define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#line 1 "library/_template.cpp"
+#define PROBLEM                                                                \
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
+#line 1 "structure/union-find.cpp"
+/**
+ * @brief UnionFind
+ */
+class UnionFind {
+public:
+    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
+        rep(i, n) par[i] = i;
+    }
+
+    int find(const int x) {
+        if (par[x] == x)
+            return x;
+        return par[x] = find(par[x]);
+    }
+
+    void unite(int x, int y) {
+        x = find(x);
+        y = find(y);
+        if (x == y)
+            return;
+
+        if (rank[x] < rank[y]) {
+            par[x] = y;
+            sz[y] += sz[x];
+        } else {
+            par[y] = x;
+            sz[x] += sz[y];
+            if (rank[x] == rank[y]) {
+                ++rank[x];
+            }
+        }
+    }
+
+    bool same(const int x, const int y) { return find(x) == find(y); }
+
+    int size(const int x) { return sz[find(x)]; }
+
+private:
+    vector<int> par, rank, sz;
+};
+#line 1 "template/template.cpp"
+/**
+ * @brief テンプレート
+ */
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -116,25 +160,21 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v)
-{
+ostream &operator<<(ostream &os, vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p)
-{
+ostream &operator<<(ostream &os, pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m)
-{
+ostream &operator<<(ostream &os, map<T, U> &m) {
     bool first = true;
     os << "{";
-    for (const auto &e : m)
-    {
+    for (const auto &e : m) {
         if (!first)
             os << ", ";
         os << "{" << e.first << ": " << e.second << "}";
@@ -144,12 +184,10 @@ ostream &operator<<(ostream &os, map<T, U> &m)
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s)
-{
+ostream &operator<<(ostream &os, set<T> &s) {
     os << "{";
     bool first = true;
-    for (const auto &e : s)
-    {
+    for (const auto &e : s) {
         if (!first)
             os << ", ";
         os << e;
@@ -159,62 +197,51 @@ ostream &operator<<(ostream &os, set<T> &s)
     return os;
 }
 template <typename T>
-T dup(T x, T y)
-{
+T dup(T x, T y) {
     return (x + y - 1) / y;
 };
 template <typename A, size_t N, typename T>
-inline void arrayFill(A (&array)[N], const T &val)
-{
+inline void arrayFill(A (&array)[N], const T &val) {
     std::fill((T *)array, (T *)(array + N), val);
 }
 template <class T>
-inline bool chmax(T &a, T b)
-{
-    if (a < b)
-    {
+inline bool chmax(T &a, T b) {
+    if (a < b) {
         a = b;
         return true;
     }
     return false;
 }
 template <class T>
-inline bool chmin(T &a, T b)
-{
-    if (a > b)
-    {
+inline bool chmin(T &a, T b) {
+    if (a > b) {
         a = b;
         return true;
     }
     return false;
 }
-struct in
-{
+struct in {
     const size_t n = 0;
     in() = default;
     in(size_t n) : n(n){};
     template <typename T>
-    operator T()
-    {
+    operator T() {
         T ret;
         cin >> ret;
         return ret;
     }
     template <typename T>
-    operator vector<T>()
-    {
+    operator vector<T>() {
         assert(n != 0);
         vector<T> ret(n);
-        for (T &x : ret)
-        {
+        for (T &x : ret) {
             T tmp = in();
             x = tmp;
         }
         return ret;
     }
     template <typename T, typename U>
-    operator pair<T, U>()
-    {
+    operator pair<T, U>() {
         pair<T, U> ret;
         ret.first = in();
         ret.second = in();
@@ -222,8 +249,7 @@ struct in
     }
 };
 template <typename T>
-inline void out(const T x)
-{
+inline void out(const T x) {
     std::cout << x << '\n';
 };
 
@@ -246,63 +272,19 @@ constexpr std::int64_t LINF = 1001001001001001001;
 
 void Main();
 
-signed main()
-{
+signed main() {
     std::cin.tie(nullptr);
     std::ios_base::sync_with_stdio(false);
     std::cout << std::fixed << std::setprecision(15);
     Main();
     return 0;
 }
-#line 1 "library/union-find.cpp"
-/**
- * @brief UnionFind
- */
-class UnionFind {
-public:
-    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
-        rep(i, n) par[i] = i;
-    }
+#line 5 "test/union-find.test.cpp"
 
-    int find(const int x) {
-        if (par[x] == x)
-            return x;
-        return par[x] = find(par[x]);
-    }
-
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
-        if (x == y)
-            return;
-
-        if (rank[x] < rank[y]) {
-            par[x] = y;
-            sz[y] += sz[x];
-        } else {
-            par[y] = x;
-            sz[x] += sz[y];
-            if (rank[x] == rank[y]) {
-                ++rank[x];
-            }
-        }
-    }
-
-    bool same(const int x, const int y) { return find(x) == find(y); }
-
-    int size(const int x) { return sz[find(x)]; }
-
-private:
-    vint par, rank, sz;
-};
-#line 4 "test/union-find.test.cpp"
-
-void Main()
-{
+void Main() {
     int n = in(), q = in();
     UnionFind uf(n);
-    rep(i, q)
-    {
+    rep(i, q) {
         int com = in(), x = in(), y = in();
         if (com == 0)
             uf.unite(x, y);

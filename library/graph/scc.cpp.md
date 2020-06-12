@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: 強連結成分分解 <small>(library/scc.cpp)</small>
+# :x: 強連結成分分解 <small>(graph/scc.cpp)</small>
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#d521f765a49c72507257a2620612ee96">library</a>
-* <a href="{{ site.github.repository_url }}/blob/master/library/scc.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 02:39:28+09:00
+* category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
+* <a href="{{ site.github.repository_url }}/blob/master/graph/scc.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-13 03:18:43+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :x: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 
 
 ## Code
@@ -115,7 +115,7 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "library/scc.cpp"
+#line 1 "graph/scc.cpp"
 /**
  * @brief 強連結成分分解
  */
