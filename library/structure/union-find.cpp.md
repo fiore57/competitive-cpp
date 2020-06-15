@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: UnionFind <small>(structure/union-find.cpp)</small>
+# :heavy_check_mark: structure/union-find.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#07414f4e15ca943e6cde032dec85d92f">structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/structure/union-find.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:18:43+09:00
+    - Last commit date: 2020-06-15 15:20:08+09:00
 
 
 
@@ -46,9 +46,6 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-/**
- * @brief UnionFind
- */
 class UnionFind {
 public:
     UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
@@ -93,9 +90,6 @@ private:
 {% raw %}
 ```cpp
 #line 1 "structure/union-find.cpp"
-/**
- * @brief UnionFind
- */
 class UnionFind {
 public:
     UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {

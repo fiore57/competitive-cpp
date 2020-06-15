@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: 強連結成分分解 <small>(graph/scc.cpp)</small>
+# :heavy_check_mark: graph/scc.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/scc.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:18:43+09:00
+    - Last commit date: 2020-06-15 15:20:08+09:00
 
 
 
@@ -46,9 +46,6 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-/**
- * @brief 強連結成分分解
- */
 using UnWeightedGraph = vector<vector<int>>;
 template <typename G>
 class StronglyConnectedComponents {
@@ -116,9 +113,6 @@ public:
 {% raw %}
 ```cpp
 #line 1 "graph/scc.cpp"
-/**
- * @brief 強連結成分分解
- */
 using UnWeightedGraph = vector<vector<int>>;
 template <typename G>
 class StronglyConnectedComponents {

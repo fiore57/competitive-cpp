@@ -25,22 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/scc.test.cpp
+# :heavy_check_mark: _template/_template.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/scc.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-15 15:43:10+09:00
+* category: <a href="../../index.html#dd743839bbbccf6b9f92c191458344b7">_template</a>
+* <a href="{{ site.github.repository_url }}/blob/master/_template/_template.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-06-15 15:20:08+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C</a>
 
 
-## Depends on
+## Verified with
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/scc.cpp.html">graph/scc.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
 ## Code
@@ -48,40 +48,6 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#include "../_template/_template.cpp"
-#include "../graph/scc.cpp"
-
-void Main() {
-    int V = in(), E = in();
-
-    UnWeightedGraph g(V);
-    rep(i, E) {
-        int s = in(), t = in();
-        g[s].push_back(t);
-    }
-
-    StronglyConnectedComponents<UnWeightedGraph> scc(g);
-    UnWeightedGraph t;
-    scc.build(t);
-
-    int Q = in();
-    while (Q--) {
-        int u = in(), v = in();
-        out(scc[u] == scc[v]);
-    }
-}
-```
-{% endraw %}
-
-<a id="bundled"></a>
-{% raw %}
-```cpp
-#line 1 "test/scc.test.cpp"
-#define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#line 1 "_template/_template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -243,87 +209,173 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "graph/scc.cpp"
-using UnWeightedGraph = vector<vector<int>>;
-template <typename G>
-class StronglyConnectedComponents {
-    const G &g;
-    UnWeightedGraph gg, rg;
-    vector<int> comp, order, used;
+```
+{% endraw %}
 
-public:
-    StronglyConnectedComponents(G &g)
-        : g(g), gg(g.size()), rg(g.size()), comp(g.size(), -1),
-          used(g.size(), false) {
-        rep(i, g.size()) {
-            for (const auto e : g[i]) {
-                gg[i].push_back(e);
-                rg[e].push_back(i);
-            }
-        }
+<a id="bundled"></a>
+{% raw %}
+```cpp
+#line 1 "_template/_template.cpp"
+#include <algorithm>
+#include <array>
+#include <cassert>
+#include <cmath>
+#include <complex>
+#include <cstdint>
+#include <deque>
+#include <functional>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <sstream>
+#include <stack>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+using namespace std;
+
+#ifdef _DEBUG
+#define DUMP(x) std::cerr << (#x) << " = " << (x) << "\n"
+#else
+#define DUMP(x)
+#endif
+#define REP(i, a, b) for (int i = (int)(a); i < (int)(b); ++i)
+#define EREP(i, a, b) for (int i = (int)(a); i <= (int)(b); ++i)
+#define RREP(i, a, b) for (int i = (int)(a)-1; i >= (int)(b); --i)
+#define rep(i, n) REP(i, 0, n)
+#define erep(i, n) EREP(i, 0, n)
+#define rrep(i, n) RREP(i, n, 0)
+#define ALL(r) (r).begin(), (r).end()
+#define pb push_back
+#define eb emplace_back
+#define fi first
+#define se second
+
+template <typename T>
+ostream &operator<<(ostream &os, vector<T> &v) {
+    os << "{";
+    rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
+    os << "}";
+    return os;
+}
+template <typename T, typename U>
+ostream &operator<<(ostream &os, pair<T, U> &p) {
+    return (os << "(" << p.first << ", " << p.second << ")");
+}
+template <typename T, typename U>
+ostream &operator<<(ostream &os, map<T, U> &m) {
+    bool first = true;
+    os << "{";
+    for (const auto &e : m) {
+        if (!first)
+            os << ", ";
+        os << "{" << e.first << ": " << e.second << "}";
+        first = false;
     }
-
-    int operator[](const int k) const { return comp[k]; }
-
-    void dfs(const int idx) {
-        if (used[idx])
-            return;
-        used[idx] = true;
-        for (const auto to : gg[idx])
-            dfs(to);
-        order.push_back(idx);
+    os << "}";
+    return os;
+}
+template <typename T>
+ostream &operator<<(ostream &os, set<T> &s) {
+    os << "{";
+    bool first = true;
+    for (const auto &e : s) {
+        if (!first)
+            os << ", ";
+        os << e;
+        first = false;
     }
-
-    void rdfs(const int idx, const int cnt) {
-        if (comp[idx] != -1)
-            return;
-        comp[idx] = cnt;
-        for (const auto to : rg[idx])
-            rdfs(to, cnt);
+    os << "}";
+    return os;
+}
+template <typename T>
+T dup(T x, T y) {
+    return (x + y - 1) / y;
+};
+template <typename A, size_t N, typename T>
+inline void arrayFill(A (&array)[N], const T &val) {
+    std::fill((T *)array, (T *)(array + N), val);
+}
+template <class T>
+inline bool chmax(T &a, T b) {
+    if (a < b) {
+        a = b;
+        return true;
     }
-
-    void build(UnWeightedGraph &t) {
-        rep(i, gg.size()) dfs(i);
-        reverse(ALL(order));
-        int ptr = 0;
-        for (const auto i : order) {
-            if (comp[i] == -1) {
-                rdfs(i, ptr);
-                ++ptr;
-            }
+    return false;
+}
+template <class T>
+inline bool chmin(T &a, T b) {
+    if (a > b) {
+        a = b;
+        return true;
+    }
+    return false;
+}
+struct in {
+    const size_t n = 0;
+    in() = default;
+    in(size_t n) : n(n){};
+    template <typename T>
+    operator T() {
+        T ret;
+        cin >> ret;
+        return ret;
+    }
+    template <typename T>
+    operator vector<T>() {
+        assert(n != 0);
+        vector<T> ret(n);
+        for (T &x : ret) {
+            T tmp = in();
+            x = tmp;
         }
-
-        t.resize(ptr);
-        rep(i, g.size()) {
-            for (const auto to : g[i]) {
-                int x = comp[i], y = comp[to];
-                if (x == y)
-                    continue;
-                t[x].push_back(y);
-            }
-        }
+        return ret;
+    }
+    template <typename T, typename U>
+    operator pair<T, U>() {
+        pair<T, U> ret;
+        ret.first = in();
+        ret.second = in();
+        return ret;
     }
 };
-#line 5 "test/scc.test.cpp"
+template <typename T>
+inline void out(const T x) {
+    std::cout << x << '\n';
+};
 
-void Main() {
-    int V = in(), E = in();
+using ll = int64_t;
+using vint = vector<int32_t>;
+using vvint = vector<vint>;
+using vll = vector<ll>;
+using vvll = vector<vll>;
+using vstr = vector<string>;
+using pint = pair<int32_t, int32_t>;
+using vpint = vector<pint>;
+using pll = pair<ll, ll>;
+using vpll = vector<pll>;
+using setint = set<int32_t>;
+using qint = queue<int32_t>;
+using qpint = queue<pint>;
 
-    UnWeightedGraph g(V);
-    rep(i, E) {
-        int s = in(), t = in();
-        g[s].push_back(t);
-    }
+constexpr std::int32_t INF = 1001001001;
+constexpr std::int64_t LINF = 1001001001001001001;
 
-    StronglyConnectedComponents<UnWeightedGraph> scc(g);
-    UnWeightedGraph t;
-    scc.build(t);
+void Main();
 
-    int Q = in();
-    while (Q--) {
-        int u = in(), v = in();
-        out(scc[u] == scc[v]);
-    }
+signed main() {
+    std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+    std::cout << std::fixed << std::setprecision(15);
+    Main();
+    return 0;
 }
 
 ```

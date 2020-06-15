@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-13 03:26:31+09:00
+    - Last commit date: 2020-06-15 15:43:10+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/template.cpp.html">テンプレート <small>(_template/template.cpp)</small></a>
-* :heavy_check_mark: <a href="../../library/structure/union-find.cpp.html">UnionFind <small>(structure/union-find.cpp)</small></a>
+* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :heavy_check_mark: <a href="../../library/structure/union-find.cpp.html">structure/union-find.cpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#include "../_template/template.cpp"
+#include "../_template/_template.cpp"
 #include "../structure/union-find.cpp"
 
 void Main() {
@@ -73,10 +73,7 @@ void Main() {
 #line 1 "test/union-find.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#line 1 "_template/template.cpp"
-/**
- * @brief テンプレート
- */
+#line 1 "_template/_template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -239,9 +236,6 @@ signed main() {
     return 0;
 }
 #line 1 "structure/union-find.cpp"
-/**
- * @brief UnionFind
- */
 class UnionFind {
 public:
     UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
