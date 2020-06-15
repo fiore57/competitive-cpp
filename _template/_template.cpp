@@ -1,6 +1,3 @@
-/**
- * @brief テンプレート
- */
 #include <algorithm>
 #include <array>
 #include <cassert>

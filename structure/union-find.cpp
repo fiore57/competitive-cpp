@@ -1,6 +1,3 @@
-/**
- * @brief UnionFind
- */
 class UnionFind {
 public:
     UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {

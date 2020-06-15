@@ -1,6 +1,3 @@
-/**
- * @brief 強連結成分分解
- */
 using UnWeightedGraph = vector<vector<int>>;
 template <typename G>
 class StronglyConnectedComponents {
