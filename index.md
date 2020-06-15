@@ -50,6 +50,13 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 
 
+<div id="5e2bab0ecb94c4ea40777733195abe1b"></div>
+
+### others
+
+* :warning: <a href="library/others/dice.cpp.html">others/dice.cpp</a>
+
+
 <div id="07414f4e15ca943e6cde032dec85d92f"></div>
 
 ### structure
