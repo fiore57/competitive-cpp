@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-15 15:43:10+09:00
+    - Last commit date: 2020-06-23 14:50:58+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -204,10 +204,33 @@ struct in {
         return ret;
     }
 };
+
+namespace fiore::impl {
 template <typename T>
-inline void out(const T x) {
-    std::cout << x << '\n';
+inline void out_impl(const T &x, char end_char) {
+    std::cout << x << end_char;
+}
+template <typename T>
+inline void out_impl(const vector<T> &x, char end_char) {
+    bool first = true;
+    for (const auto &e : x) {
+        if (!first)
+            std::cout << ' ';
+        std::cout << e;
+        first = false;
+    }
+    std::cout << end_char;
+}
+} // namespace fiore::impl
+template <typename T>
+inline void out(const T &x) {
+    fiore::impl::out_impl(x, '\n');
 };
+template <typename T, typename U, typename... Args>
+inline void out(const T &x, const U &y, const Args &... args) {
+    fiore::impl::out_impl(x, ' ');
+    out(y, args...);
+}
 
 using ll = int64_t;
 using vint = vector<int32_t>;
