@@ -128,10 +128,33 @@ struct in {
         return ret;
     }
 };
+
+namespace fiore::impl {
 template <typename T>
-inline void out(const T x) {
-    std::cout << x << '\n';
+inline void out_impl(const T &x, char end_char) {
+    std::cout << x << end_char;
+}
+template <typename T>
+inline void out_impl(const vector<T> &x, char end_char) {
+    bool first = true;
+    for (const auto &e : x) {
+        if (!first)
+            std::cout << ' ';
+        std::cout << e;
+        first = false;
+    }
+    std::cout << end_char;
+}
+} // namespace fiore::impl
+template <typename T>
+inline void out(const T &x) {
+    fiore::impl::out_impl(x, '\n');
 };
+template <typename T, typename U, typename... Args>
+inline void out(const T &x, const U &y, const Args &... args) {
+    fiore::impl::out_impl(x, ' ');
+    out(y, args...);
+}
 
 using ll = int64_t;
 using vint = vector<int32_t>;
