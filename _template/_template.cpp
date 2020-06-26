@@ -40,18 +40,18 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v) {
+ostream &operator<<(ostream &os, const vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p) {
+ostream &operator<<(ostream &os, const pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m) {
+ostream &operator<<(ostream &os, const map<T, U> &m) {
     bool first = true;
     os << "{";
     for (const auto &e : m) {
@@ -64,7 +64,20 @@ ostream &operator<<(ostream &os, map<T, U> &m) {
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s) {
+ostream &operator<<(ostream &os, const set<T> &s) {
+    os << "{";
+    bool first = true;
+    for (const auto &e : s) {
+        if (!first)
+            os << ", ";
+        os << e;
+        first = false;
+    }
+    os << "}";
+    return os;
+}
+template <typename T>
+ostream &operator<<(ostream &os, const multiset<T> &s) {
     os << "{";
     bool first = true;
     for (const auto &e : s) {
