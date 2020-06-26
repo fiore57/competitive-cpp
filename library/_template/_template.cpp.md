@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#dd743839bbbccf6b9f92c191458344b7">_template</a>
 * <a href="{{ site.github.repository_url }}/blob/master/_template/_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-23 14:50:58+09:00
+    - Last commit date: 2020-06-27 01:18:20+09:00
 
 
 
@@ -90,18 +90,18 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v) {
+ostream &operator<<(ostream &os, const vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p) {
+ostream &operator<<(ostream &os, const pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m) {
+ostream &operator<<(ostream &os, const map<T, U> &m) {
     bool first = true;
     os << "{";
     for (const auto &e : m) {
@@ -114,7 +114,20 @@ ostream &operator<<(ostream &os, map<T, U> &m) {
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s) {
+ostream &operator<<(ostream &os, const set<T> &s) {
+    os << "{";
+    bool first = true;
+    for (const auto &e : s) {
+        if (!first)
+            os << ", ";
+        os << e;
+        first = false;
+    }
+    os << "}";
+    return os;
+}
+template <typename T>
+ostream &operator<<(ostream &os, const multiset<T> &s) {
     os << "{";
     bool first = true;
     for (const auto &e : s) {
@@ -281,18 +294,18 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v) {
+ostream &operator<<(ostream &os, const vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p) {
+ostream &operator<<(ostream &os, const pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m) {
+ostream &operator<<(ostream &os, const map<T, U> &m) {
     bool first = true;
     os << "{";
     for (const auto &e : m) {
@@ -305,7 +318,20 @@ ostream &operator<<(ostream &os, map<T, U> &m) {
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s) {
+ostream &operator<<(ostream &os, const set<T> &s) {
+    os << "{";
+    bool first = true;
+    for (const auto &e : s) {
+        if (!first)
+            os << ", ";
+        os << e;
+        first = false;
+    }
+    os << "}";
+    return os;
+}
+template <typename T>
+ostream &operator<<(ostream &os, const multiset<T> &s) {
     os << "{";
     bool first = true;
     for (const auto &e : s) {

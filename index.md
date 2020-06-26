@@ -50,6 +50,13 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 
 
+<div id="7e676e9e663beb40fd133f5ee24487c2"></div>
+
+### math
+
+* :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
+
+
 <div id="5e2bab0ecb94c4ea40777733195abe1b"></div>
 
 ### others

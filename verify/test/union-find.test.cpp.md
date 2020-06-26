@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-23 14:50:58+09:00
+    - Last commit date: 2020-06-27 01:18:20+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -116,18 +116,18 @@ using namespace std;
 #define se second
 
 template <typename T>
-ostream &operator<<(ostream &os, vector<T> &v) {
+ostream &operator<<(ostream &os, const vector<T> &v) {
     os << "{";
     rep(i, v.size()) os << v[i] << (i == (int)v.size() - 1 ? "" : ", ");
     os << "}";
     return os;
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, pair<T, U> &p) {
+ostream &operator<<(ostream &os, const pair<T, U> &p) {
     return (os << "(" << p.first << ", " << p.second << ")");
 }
 template <typename T, typename U>
-ostream &operator<<(ostream &os, map<T, U> &m) {
+ostream &operator<<(ostream &os, const map<T, U> &m) {
     bool first = true;
     os << "{";
     for (const auto &e : m) {
@@ -140,7 +140,20 @@ ostream &operator<<(ostream &os, map<T, U> &m) {
     return os;
 }
 template <typename T>
-ostream &operator<<(ostream &os, set<T> &s) {
+ostream &operator<<(ostream &os, const set<T> &s) {
+    os << "{";
+    bool first = true;
+    for (const auto &e : s) {
+        if (!first)
+            os << ", ";
+        os << e;
+        first = false;
+    }
+    os << "}";
+    return os;
+}
+template <typename T>
+ostream &operator<<(ostream &os, const multiset<T> &s) {
     os << "{";
     bool first = true;
     for (const auto &e : s) {
