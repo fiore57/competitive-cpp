@@ -47,6 +47,8 @@ layout: default
 
 * :heavy_check_mark: <a href="library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
 * :heavy_check_mark: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :warning: <a href="library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
+* :warning: <a href="library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 
 
