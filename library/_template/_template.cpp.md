@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#dd743839bbbccf6b9f92c191458344b7">_template</a>
 * <a href="{{ site.github.repository_url }}/blob/master/_template/_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-06-27 01:18:20+09:00
+    - Last commit date: 2020-09-01 17:18:29+09:00
 
 
 
@@ -41,6 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 
 
@@ -193,7 +194,8 @@ struct in {
     }
 };
 
-namespace fiore::impl {
+namespace fiore {
+namespace impl {
 template <typename T>
 inline void out_impl(const T &x, char end_char) {
     std::cout << x << end_char;
@@ -209,7 +211,8 @@ inline void out_impl(const vector<T> &x, char end_char) {
     }
     std::cout << end_char;
 }
-} // namespace fiore::impl
+} // namespace impl
+} // namespace fiore
 template <typename T>
 inline void out(const T &x) {
     fiore::impl::out_impl(x, '\n');
@@ -397,7 +400,8 @@ struct in {
     }
 };
 
-namespace fiore::impl {
+namespace fiore {
+namespace impl {
 template <typename T>
 inline void out_impl(const T &x, char end_char) {
     std::cout << x << end_char;
@@ -413,7 +417,8 @@ inline void out_impl(const vector<T> &x, char end_char) {
     }
     std::cout << end_char;
 }
-} // namespace fiore::impl
+} // namespace impl
+} // namespace fiore
 template <typename T>
 inline void out(const T &x) {
     fiore::impl::out_impl(x, '\n');

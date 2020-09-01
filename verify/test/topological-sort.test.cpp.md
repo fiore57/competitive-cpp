@@ -25,22 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/union-find.test.cpp
+# :heavy_check_mark: test/topological-sort.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/union-find.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/topological-sort.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-01 17:20:31+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B</a>
 
 
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/structure/union-find.cpp.html">structure/union-find.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 
 
 ## Code
@@ -49,20 +50,25 @@ layout: default
 {% raw %}
 ```cpp
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B"
+// clang-format off
 #include "../_template/_template.cpp"
-#include "../structure/union-find.cpp"
+#include "../graph/_graph-template.cpp"
+#include "../graph/topological-sort.cpp"
+// clang-format on
 
 void Main() {
-    int n = in(), q = in();
-    UnionFind uf(n);
-    rep(i, q) {
-        int com = in(), x = in(), y = in();
-        if (com == 0)
-            uf.unite(x, y);
-        else
-            cout << uf.same(x, y) << endl;
+    int V = in(), E = in();
+
+    UnWeightedGraph G(V);
+
+    rep(i, E) {
+        int s = in(), t = in();
+        G[s].push_back(t);
     }
+
+    for (auto v : topologicalSort(G))
+        out(v);
 }
 ```
 {% endraw %}
@@ -70,9 +76,10 @@ void Main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/union-find.test.cpp"
+#line 1 "test/topological-sort.test.cpp"
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B"
+// clang-format off
 #line 1 "_template/_template.cpp"
 #include <algorithm>
 #include <array>
@@ -273,56 +280,75 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "structure/union-find.cpp"
-class UnionFind {
-public:
-    UnionFind(const int n) : par(n), rank(n, 0), sz(n, 1) {
-        rep(i, n) par[i] = i;
-    }
-
-    int find(const int x) {
-        if (par[x] == x)
-            return x;
-        return par[x] = find(par[x]);
-    }
-
-    void unite(int x, int y) {
-        x = find(x);
-        y = find(y);
-        if (x == y)
-            return;
-
-        if (rank[x] < rank[y]) {
-            par[x] = y;
-            sz[y] += sz[x];
-        } else {
-            par[y] = x;
-            sz[x] += sz[y];
-            if (rank[x] == rank[y]) {
-                ++rank[x];
-            }
-        }
-    }
-
-    bool same(const int x, const int y) { return find(x) == find(y); }
-
-    int size(const int x) { return sz[find(x)]; }
-
-private:
-    vector<int> par, rank, sz;
+#line 1 "graph/_graph-template.cpp"
+template <typename T = int>
+struct Edge {
+    int from, to;
+    T cost;
+    int idx;
+    Edge() = default;
+    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
+        : from(from), to(to), cost(cost), idx(idx) {}
 };
-#line 5 "test/union-find.test.cpp"
+template <typename T = int>
+using Edges = vector<Edge<T>>;
+template <typename T>
+using WeightedGraph = vector<Edges<T>>;
+using UnWeightedGraph = vector<vector<int>>;
+
+template <typename T = int>
+struct Graph {
+    vector<vector<Edge<T>>> g;
+    int es;
+
+    Graph() = default;
+
+    explicit Graph(const int n) : g(n), es(0){};
+
+    size_t size() const { return g.size(); }
+
+    void add_directed_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es++);
+    }
+    void add_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es);
+        g[to].emplace_back(to, from, cost, es++);
+    }
+};
+#line 1 "graph/topological-sort.cpp"
+vector<int> topologicalSort(const UnWeightedGraph &g) {
+    const size_t n = g.size();
+    vector<int> ans, seen(n);
+    auto dfs = [&g, &seen, &ans](auto &&f, int v) {
+        if (seen[v])
+            return;
+        seen[v] = true;
+        for (auto nv : g[v])
+            f(f, nv);
+        ans.push_back(v);
+    };
+    for (size_t i = 0; i < n; ++i)
+        dfs(dfs, i);
+    if (ans.size() != n)
+        return vector<int>();
+    reverse(ans.begin(), ans.end());
+    return ans;
+}
+#line 7 "test/topological-sort.test.cpp"
+// clang-format on
 
 void Main() {
-    int n = in(), q = in();
-    UnionFind uf(n);
-    rep(i, q) {
-        int com = in(), x = in(), y = in();
-        if (com == 0)
-            uf.unite(x, y);
-        else
-            cout << uf.same(x, y) << endl;
+    int V = in(), E = in();
+
+    UnWeightedGraph G(V);
+
+    rep(i, E) {
+        int s = in(), t = in();
+        G[s].push_back(t);
     }
+
+    for (auto v : topologicalSort(G))
+        out(v);
 }
 
 ```
