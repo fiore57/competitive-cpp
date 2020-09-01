@@ -142,7 +142,8 @@ struct in {
     }
 };
 
-namespace fiore::impl {
+namespace fiore {
+namespace impl {
 template <typename T>
 inline void out_impl(const T &x, char end_char) {
     std::cout << x << end_char;
@@ -158,7 +159,8 @@ inline void out_impl(const vector<T> &x, char end_char) {
     }
     std::cout << end_char;
 }
-} // namespace fiore::impl
+} // namespace impl
+} // namespace fiore
 template <typename T>
 inline void out(const T &x) {
     fiore::impl::out_impl(x, '\n');
