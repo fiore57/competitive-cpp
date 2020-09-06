@@ -38,15 +38,16 @@ layout: default
 
 ### _template
 
-* :heavy_check_mark: <a href="library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :question: <a href="library/_template/_template.cpp.html">_template/_template.cpp</a>
 
 
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
 
 ### graph
 
-* :heavy_check_mark: <a href="library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
+* :question: <a href="library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
 * :heavy_check_mark: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :x: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
 * :heavy_check_mark: <a href="library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
@@ -81,6 +82,7 @@ layout: default
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
+* :x: <a href="verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>

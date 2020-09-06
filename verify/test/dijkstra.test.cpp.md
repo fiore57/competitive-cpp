@@ -25,24 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/find-directed-graph-cycle.test.cpp
+# :x: test/dijkstra.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/find-directed-graph-cycle.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/dijkstra.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-06 22:36:51+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B</a>
 
 
 ## Depends on
 
 * :question: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
 * :question: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
+* :x: <a href="../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 
 
 ## Code
@@ -51,36 +50,36 @@ layout: default
 {% raw %}
 ```cpp
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A"
-// clang-format off
+    "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
 #include "../_template/_template.cpp"
 #include "../graph/_graph-template.cpp"
-#include "../graph/get-shortest-path.cpp"
-#include "../graph/find-directed-graph-cycle.cpp"
-// clang-format on
+#include "../graph/dijkstra.cpp"
 
 void Main() {
-    int V = in(), E = in();
+    int N = in();
 
-    UnWeightedGraph G(V);
-
-    rep(i, E) {
-        int s = in(), t = in();
-        G[s].push_back(t);
+    Graph<int> graph(N);
+    rep(i, N) {
+        int u = in(), k = in();
+        rep(j, k) {
+            int v = in(), c = in();
+            graph.add_edge(u, v, c);
+        }
     }
 
-    out(!findDirectedGraphCycle(G).empty());
+    auto v = dijkstra(graph, 0).dist;
+    rep(i, N) cout << i << " " << v[i] << endl;
 }
+
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/find-directed-graph-cycle.test.cpp"
+#line 1 "test/dijkstra.test.cpp"
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A"
-// clang-format off
+    "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
 #line 1 "_template/_template.cpp"
 #include <algorithm>
 #include <array>
@@ -316,90 +315,61 @@ struct Graph {
         g[to].emplace_back(to, from, cost, es++);
     }
 };
-#line 1 "graph/get-shortest-path.cpp"
-vector<int> getShortestPath(const UnWeightedGraph &g, const int s,
-                            const int t) {
-    vector<int> dist(g.size(), INF), prev(g.size(), -1);
+#line 1 "graph/dijkstra.cpp"
+template <typename T> struct ShortestPath {
+    vector<T> dist;
+    vector<int> from, id;
+};
+
+template <typename T> ShortestPath<T> dijkstra(const Graph<T> &g, const int s) {
+    constexpr auto INF = numeric_limits<T>::max();
+    using Pi = pair<T, int>;
+
+    vector<int> from(g.size(), -1), id(g.size(), -1);
+    vector<T> dist(g.size(), INF);
+    priority_queue<Pi, vector<Pi>, greater<>> que;
+
     dist[s] = 0;
-    queue<int> q;
-    q.push(s);
-    while (!q.empty()) {
-        const int v = q.front();
-        q.pop();
-        for (const auto nv : g[v]) {
-            if (dist[nv] != INF)
-                continue;
-            prev[nv] = v;
-            dist[nv] = dist[v] + 1;
-            q.push(nv);
-        }
-    }
-    if (dist[t] == INF)
-        return vector<int>();
-    vector<int> shortestPath;
-    for (int v = t;; v = prev[v]) {
-        shortestPath.push_back(v);
-        if (v == s)
-            break;
-    }
-    reverse(shortestPath.begin(), shortestPath.end());
-    return shortestPath;
-}
-#line 1 "graph/find-directed-graph-cycle.cpp"
-vector<int> findDirectedGraphCycle(const UnWeightedGraph &g) {
-    const int n = g.size();
-    vector<int> seen(n, 0), depth(n, -1);
-    int cycle_s = -1, cycle_t = -1;
-    auto dfs = [&g, &seen, &depth, &cycle_s, &cycle_t](auto &&self,
-                                                       const int v) {
-        seen[v] = 1;
-        int max_depth_nv = -1;
-        for (const auto nv : g[v]) {
-            if (seen[nv] == 1) { // 後退辺が存在
-                if (max_depth_nv == -1 || depth[max_depth_nv] < depth[nv]) {
-                    max_depth_nv = nv;
-                }
-            }
-        }
-        if (max_depth_nv != -1) {
-            cycle_s = max_depth_nv;
-            cycle_t = v;
-            return true;
-        }
-        for (const auto nv : g[v]) {
-            if (seen[nv] != 0)
-                continue;
-            depth[nv] = depth[v] + 1;
-            if (self(self, nv))
-                return true;
-        }
-        seen[v] = 2;
-        return false;
-    };
-    rep(s, n) {
-        if (seen[s] != 0)
+    que.emplace(dist[s], s);
+
+    while (!que.empty()) {
+        T cost;
+        int idx;
+        tie(cost, idx) = que.top();
+        que.pop();
+
+        if (dist[idx] < cost)
             continue;
-        depth[s] = 0;
-        if (dfs(dfs, s)) {
-            return getShortestPath(g, cycle_s, cycle_t);
+
+        for (const auto &e : g.g[idx]) {
+            auto next_cost = cost + e.cost;
+            if (dist[e.to] <= next_cost)
+                continue;
+            dist[e.to] = next_cost;
+            from[e.to] = idx;
+            id[e.to] = e.idx;
+            que.emplace(dist[e.to], e.to);
         }
     }
-    return vint();
+
+    return {dist, from, id};
 }
-#line 8 "test/find-directed-graph-cycle.test.cpp"
-// clang-format on
+#line 6 "test/dijkstra.test.cpp"
 
 void Main() {
-    int V = in(), E = in();
+    int N = in();
 
-    UnWeightedGraph G(V);
-
-    rep(i, E) {
-        int s = in(), t = in();
-        G[s].push_back(t);
+    Graph<int> graph(N);
+    rep(i, N) {
+        int u = in(), k = in();
+        rep(j, k) {
+            int v = in(), c = in();
+            graph.add_edge(u, v, c);
+        }
     }
 
-    out(!findDirectedGraphCycle(G).empty());
+    auto v = dijkstra(graph, 0).dist;
+    rep(i, N) cout << i << " " << v[i] << endl;
 }
 
 ```
