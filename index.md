@@ -59,6 +59,8 @@ layout: default
 ### math
 
 * :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
+* :warning: <a href="library/math/divisor.cpp.html">math/divisor.cpp</a>
+* :heavy_check_mark: <a href="library/math/gcdlcm.cpp.html">math/gcdlcm.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
 * :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
 * :warning: <a href="library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
@@ -84,6 +86,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
 * :x: <a href="verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
