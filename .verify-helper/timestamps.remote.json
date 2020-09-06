@@ -1,5 +1,6 @@
 {
 "test/bellman-ford.test.cpp": "2020-09-01 17:18:29 +0900",
+"test/dijkstra.test.cpp": "2020-09-06 22:55:36 +0900",
 "test/find-directed-graph-cycle.test.cpp": "2020-09-01 17:18:29 +0900",
 "test/gcdlcm.test.cpp": "2020-09-06 22:42:32 +0900",
 "test/scc.test.cpp": "2020-09-01 17:18:29 +0900",
