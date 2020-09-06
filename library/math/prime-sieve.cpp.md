@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: math/prime-sieve.cpp
+# :warning: math/prime-sieve.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -34,11 +34,6 @@ layout: default
     - Last commit date: 2020-09-06 21:41:02+09:00
 
 
-
-
-## Verified with
-
-* :x: <a href="../../verify/test/prime-sieve.test.cpp.html">test/prime-sieve.test.cpp</a>
 
 
 ## Code
