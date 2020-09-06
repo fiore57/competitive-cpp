@@ -38,7 +38,7 @@ layout: default
 
 ### _template
 
-* :heavy_check_mark: <a href="library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :question: <a href="library/_template/_template.cpp.html">_template/_template.cpp</a>
 
 
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
@@ -58,6 +58,7 @@ layout: default
 ### math
 
 * :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
+* :x: <a href="library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
 
 
 <div id="5e2bab0ecb94c4ea40777733195abe1b"></div>
@@ -78,6 +79,7 @@ layout: default
 
 * :heavy_check_mark: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
+* :x: <a href="verify/test/prime-sieve.test.cpp.html">test/prime-sieve.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>

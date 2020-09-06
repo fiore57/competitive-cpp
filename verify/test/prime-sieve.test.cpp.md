@@ -25,24 +25,22 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/find-directed-graph-cycle.test.cpp
+# :x: test/prime-sieve.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/find-directed-graph-cycle.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/prime-sieve.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-06 21:41:02+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A</a>
 
 
 ## Depends on
 
 * :question: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
+* :x: <a href="../../library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
 
 
 ## Code
@@ -51,25 +49,17 @@ layout: default
 {% raw %}
 ```cpp
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A"
 // clang-format off
 #include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
-#include "../graph/get-shortest-path.cpp"
-#include "../graph/find-directed-graph-cycle.cpp"
+#include "../math/prime-sieve.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in();
-
-    UnWeightedGraph G(V);
-
-    rep(i, E) {
-        int s = in(), t = in();
-        G[s].push_back(t);
-    }
-
-    out(!findDirectedGraphCycle(G).empty());
+    int n = in();
+    primeSieve ps(n);
+    cout << n << ": ";
+    out(ps.factorList(n));
 }
 ```
 {% endraw %}
@@ -77,9 +67,9 @@ void Main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/find-directed-graph-cycle.test.cpp"
+#line 1 "test/prime-sieve.test.cpp"
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A"
 // clang-format off
 #line 1 "_template/_template.cpp"
 #include <algorithm>
@@ -281,125 +271,57 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "graph/_graph-template.cpp"
-template <typename T = int>
-struct Edge {
-    int from, to;
-    T cost;
-    int idx;
-    Edge() = default;
-    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
-        : from(from), to(to), cost(cost), idx(idx) {}
-};
-template <typename T = int>
-using Edges = vector<Edge<T>>;
+#line 1 "math/prime-sieve.cpp"
 template <typename T>
-using WeightedGraph = vector<Edges<T>>;
-using UnWeightedGraph = vector<vector<int>>;
-
-template <typename T = int>
-struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;
-
-    Graph() = default;
-
-    explicit Graph(const int n) : g(n), es(0){};
-
-    size_t size() const { return g.size(); }
-
-    void add_directed_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es++);
-    }
-    void add_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);
-    }
-};
-#line 1 "graph/get-shortest-path.cpp"
-vector<int> getShortestPath(const UnWeightedGraph &g, const int s,
-                            const int t) {
-    vector<int> dist(g.size(), INF), prev(g.size(), -1);
-    dist[s] = 0;
-    queue<int> q;
-    q.push(s);
-    while (!q.empty()) {
-        const int v = q.front();
-        q.pop();
-        for (const auto nv : g[v]) {
-            if (dist[nv] != INF)
-                continue;
-            prev[nv] = v;
-            dist[nv] = dist[v] + 1;
-            q.push(nv);
+vector<pair<T, ll>> rle(const vector<T> &v) {
+    vector<pair<T, ll>> ret;
+    ret.reserve(v.size() / 2);
+    for (const auto x : v) {
+        if (ret.empty() || ret.back().first != x) {
+            ret.emplace_back(x, 1);
+        } else {
+            ++ret.back().second;
         }
     }
-    if (dist[t] == INF)
-        return vector<int>();
-    vector<int> shortestPath;
-    for (int v = t;; v = prev[v]) {
-        shortestPath.push_back(v);
-        if (v == s)
-            break;
-    }
-    reverse(shortestPath.begin(), shortestPath.end());
-    return shortestPath;
+    return ret;
 }
-#line 1 "graph/find-directed-graph-cycle.cpp"
-vector<int> findDirectedGraphCycle(const UnWeightedGraph &g) {
-    const int n = g.size();
-    vector<int> seen(n, 0), depth(n, -1);
-    int cycle_s = -1, cycle_t = -1;
-    auto dfs = [&g, &seen, &depth, &cycle_s, &cycle_t](auto &&self,
-                                                       const int v) {
-        seen[v] = 1;
-        int max_depth_nv = -1;
-        for (const auto nv : g[v]) {
-            if (seen[nv] == 1) { // 後退辺が存在
-                if (max_depth_nv == -1 || depth[max_depth_nv] < depth[nv]) {
-                    max_depth_nv = nv;
-                }
+struct primeSieve {
+    ll n;
+    vector<ll> primeFactor;
+    vector<ll> primes;
+
+    primeSieve(const ll n = 1) : n(n), primeFactor(n + 1, 0) {
+        primeFactor[0] = primeFactor[1] = -1;
+        for (ll i = 2; i <= n; ++i) {
+            if (primeFactor[i])
+                continue;
+            primes.push_back(i);
+            primeFactor[i] = i;
+            for (ll j = i * i; j <= n; j += i) {
+                if (!primeFactor[j])
+                    primeFactor[j] = i;
             }
         }
-        if (max_depth_nv != -1) {
-            cycle_s = max_depth_nv;
-            cycle_t = v;
-            return true;
-        }
-        for (const auto nv : g[v]) {
-            if (seen[nv] != 0)
-                continue;
-            depth[nv] = depth[v] + 1;
-            if (self(self, nv))
-                return true;
-        }
-        seen[v] = 2;
-        return false;
-    };
-    rep(s, n) {
-        if (seen[s] != 0)
-            continue;
-        depth[s] = 0;
-        if (dfs(dfs, s)) {
-            return getShortestPath(g, cycle_s, cycle_t);
-        }
     }
-    return vint();
-}
-#line 8 "test/find-directed-graph-cycle.test.cpp"
+    bool isPrime(const ll x) const { return primeFactor[x] == x; }
+    vector<ll> factorList(ll x) const {
+        vector<ll> res;
+        while (x != 1) {
+            res.push_back(primeFactor[x]);
+            x /= primeFactor[x];
+        }
+        return res;
+    }
+    vector<pair<ll, ll>> factor(const ll x) const { return rle(factorList(x)); }
+};
+#line 6 "test/prime-sieve.test.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in();
-
-    UnWeightedGraph G(V);
-
-    rep(i, E) {
-        int s = in(), t = in();
-        G[s].push_back(t);
-    }
-
-    out(!findDirectedGraphCycle(G).empty());
+    int n = in();
+    primeSieve ps(n);
+    cout << n << ": ";
+    out(ps.factorList(n));
 }
 
 ```
