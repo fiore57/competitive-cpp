@@ -12,7 +12,7 @@ void Main() {
         int u = in(), k = in();
         rep(j, k) {
             int v = in(), c = in();
-            graph.add_edge(u, v, c);
+            graph.add_directed_edge(u, v, c);
         }
     }
 
