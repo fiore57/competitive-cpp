@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :question: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
+* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 

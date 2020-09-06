@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :question: _template/_template.cpp
+# :heavy_check_mark: _template/_template.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -39,7 +39,7 @@ layout: default
 ## Verified with
 
 * :heavy_check_mark: <a href="../../verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
-* :x: <a href="../../verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>

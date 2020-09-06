@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: test/dijkstra.test.cpp
+# :heavy_check_mark: test/dijkstra.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/dijkstra.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-06 22:36:51+09:00
+    - Last commit date: 2020-09-06 22:55:36+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :question: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :x: <a href="../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 
 
 ## Code
@@ -63,7 +63,7 @@ void Main() {
         int u = in(), k = in();
         rep(j, k) {
             int v = in(), c = in();
-            graph.add_edge(u, v, c);
+            graph.add_directed_edge(u, v, c);
         }
     }
 
@@ -364,7 +364,7 @@ void Main() {
         int u = in(), k = in();
         rep(j, k) {
             int v = in(), c = in();
-            graph.add_edge(u, v, c);
+            graph.add_directed_edge(u, v, c);
         }
     }
 

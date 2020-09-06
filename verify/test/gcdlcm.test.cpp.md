@@ -39,7 +39,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
+* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
 * :heavy_check_mark: <a href="../../library/math/gcdlcm.cpp.html">math/gcdlcm.cpp</a>
 
 
