@@ -57,6 +57,8 @@ layout: default
 
 ### math
 
+* :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
+* :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
 * :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
 * :warning: <a href="library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
 
@@ -66,6 +68,7 @@ layout: default
 ### others
 
 * :warning: <a href="library/others/dice.cpp.html">others/dice.cpp</a>
+* :warning: <a href="library/others/didj.cpp.html">others/didj.cpp</a>
 
 
 <div id="07414f4e15ca943e6cde032dec85d92f"></div>
