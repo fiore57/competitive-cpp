@@ -17,7 +17,5 @@ void Main() {
     }
 
     auto v = dijkstra(graph, 0).dist;
-    rep(i, N) {
-        cout << i << " " << v[i] << endl;
-    }
+    rep(i, N) cout << i << " " << v[i] << endl;
 }
