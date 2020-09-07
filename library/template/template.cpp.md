@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: _template/_template.cpp
+# :question: template/template.cpp
 
 <a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#dd743839bbbccf6b9f92c191458344b7">_template</a>
-* <a href="{{ site.github.repository_url }}/blob/master/_template/_template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+* category: <a href="../../index.html#66f6181bcb4cff4cd38fbc804a036db6">template</a>
+* <a href="{{ site.github.repository_url }}/blob/master/template/template.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 
 
 ## Verified with
 
-* :heavy_check_mark: <a href="../../verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
-* :heavy_check_mark: <a href="../../verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
+* :x: <a href="../../verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
+* :x: <a href="../../verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
@@ -257,7 +257,7 @@ signed main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "_template/_template.cpp"
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>

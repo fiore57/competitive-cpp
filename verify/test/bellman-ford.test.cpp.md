@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/bellman-ford.test.cpp
+# :x: test/bellman-ford.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/bellman-ford.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :x: <a href="../../library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :question: <a href="../../library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -51,9 +51,9 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
 #include "../graph/bellman-ford.cpp"
+#include "../graph/graph-template.cpp"
+#include "../template/template.cpp"
 
 void Main() {
     int V = in(), E = in(), r = in();
@@ -85,7 +85,64 @@ void Main() {
 #line 1 "test/bellman-ford.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
-#line 1 "_template/_template.cpp"
+#line 1 "graph/bellman-ford.cpp"
+template <typename T>
+vector<T> bellman_ford(const Edges<T> &edges, int n, int s) {
+    constexpr auto INF = numeric_limits<T>::max();
+    vector<T> dist(n, INF);
+    dist[s] = 0;
+    rep(i, n - 1) {
+        for (const auto &e : edges) {
+            if (dist[e.from] == INF)
+                continue;
+            dist[e.to] = min(dist[e.to], dist[e.from] + e.cost);
+        }
+    }
+
+    for (const auto &e : edges) {
+        if (dist[e.from] == INF)
+            continue;
+        if (dist[e.from] + e.cost < dist[e.to])
+            return vector<T>();
+    }
+    return dist;
+}
+#line 1 "graph/graph-template.cpp"
+template <typename T = int>
+struct Edge {
+    int from, to;
+    T cost;
+    int idx;
+    Edge() = default;
+    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
+        : from(from), to(to), cost(cost), idx(idx) {}
+};
+template <typename T = int>
+using Edges = vector<Edge<T>>;
+template <typename T>
+using WeightedGraph = vector<Edges<T>>;
+using UnWeightedGraph = vector<vector<int>>;
+
+template <typename T = int>
+struct Graph {
+    vector<vector<Edge<T>>> g;
+    int es;
+
+    Graph() = default;
+
+    explicit Graph(const int n) : g(n), es(0){};
+
+    size_t size() const { return g.size(); }
+
+    void add_directed_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es++);
+    }
+    void add_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es);
+        g[to].emplace_back(to, from, cost, es++);
+    }
+};
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -284,63 +341,6 @@ signed main() {
     std::cout << std::fixed << std::setprecision(15);
     Main();
     return 0;
-}
-#line 1 "graph/_graph-template.cpp"
-template <typename T = int>
-struct Edge {
-    int from, to;
-    T cost;
-    int idx;
-    Edge() = default;
-    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
-        : from(from), to(to), cost(cost), idx(idx) {}
-};
-template <typename T = int>
-using Edges = vector<Edge<T>>;
-template <typename T>
-using WeightedGraph = vector<Edges<T>>;
-using UnWeightedGraph = vector<vector<int>>;
-
-template <typename T = int>
-struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;
-
-    Graph() = default;
-
-    explicit Graph(const int n) : g(n), es(0){};
-
-    size_t size() const { return g.size(); }
-
-    void add_directed_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es++);
-    }
-    void add_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);
-    }
-};
-#line 1 "graph/bellman-ford.cpp"
-template <typename T>
-vector<T> bellman_ford(const Edges<T> &edges, int n, int s) {
-    constexpr auto INF = numeric_limits<T>::max();
-    vector<T> dist(n, INF);
-    dist[s] = 0;
-    rep(i, n - 1) {
-        for (const auto &e : edges) {
-            if (dist[e.from] == INF)
-                continue;
-            dist[e.to] = min(dist[e.to], dist[e.from] + e.cost);
-        }
-    }
-
-    for (const auto &e : edges) {
-        if (dist[e.from] == INF)
-            continue;
-        if (dist[e.from] + e.cost < dist[e.to])
-            return vector<T>();
-    }
-    return dist;
 }
 #line 6 "test/bellman-ford.test.cpp"
 

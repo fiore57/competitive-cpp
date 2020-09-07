@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/scc.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:18:29+09:00
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/scc.cpp.html">graph/scc.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -50,7 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#include "../_template/_template.cpp"
+#include "../template/template.cpp"
 #include "../graph/scc.cpp"
 
 void Main() {
@@ -81,7 +81,7 @@ void Main() {
 #line 1 "test/scc.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#line 1 "_template/_template.cpp"
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>

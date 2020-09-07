@@ -34,22 +34,15 @@ layout: default
 
 ## Library Files
 
-<div id="dd743839bbbccf6b9f92c191458344b7"></div>
-
-### _template
-
-* :heavy_check_mark: <a href="library/_template/_template.cpp.html">_template/_template.cpp</a>
-
-
 <div id="f8b0b924ebd7046dbfa85a856e4682c8"></div>
 
 ### graph
 
-* :heavy_check_mark: <a href="library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :heavy_check_mark: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
-* :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :x: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
+* :x: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
 * :heavy_check_mark: <a href="library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
+* :question: <a href="library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 * :heavy_check_mark: <a href="library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 
@@ -81,10 +74,17 @@ layout: default
 * :heavy_check_mark: <a href="library/structure/union-find.cpp.html">structure/union-find.cpp</a>
 
 
+<div id="66f6181bcb4cff4cd38fbc804a036db6"></div>
+
+### template
+
+* :question: <a href="library/template/template.cpp.html">template/template.cpp</a>
+
+
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
+* :x: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
+* :x: <a href="verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>

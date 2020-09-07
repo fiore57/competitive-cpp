@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/gcdlcm.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-06 22:42:32+09:00
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C">https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
 * :heavy_check_mark: <a href="../../library/math/gcdlcm.cpp.html">math/gcdlcm.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -51,7 +51,7 @@ layout: default
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C"
 // clang-format off
-#include "../_template/_template.cpp"
+#include "../template/template.cpp"
 #include "../math/gcdlcm.cpp"
 // clang-format on
 
@@ -74,7 +74,7 @@ void Main() {
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C"
 // clang-format off
-#line 1 "_template/_template.cpp"
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>

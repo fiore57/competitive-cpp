@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/dijkstra.test.cpp
+# :x: test/dijkstra.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/dijkstra.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-06 22:55:36+09:00
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B">https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :x: <a href="../../library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
+* :question: <a href="../../library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -51,9 +51,9 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
 #include "../graph/dijkstra.cpp"
+#include "../graph/graph-template.cpp"
+#include "../template/template.cpp"
 
 void Main() {
     int N = in();
@@ -80,7 +80,81 @@ void Main() {
 #line 1 "test/dijkstra.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
-#line 1 "_template/_template.cpp"
+#line 1 "graph/dijkstra.cpp"
+template <typename T> struct ShortestPath {
+    vector<T> dist;
+    vector<int> from, id;
+};
+
+template <typename T> ShortestPath<T> dijkstra(const Graph<T> &g, const int s) {
+    constexpr auto INF = numeric_limits<T>::max();
+    using Pi = pair<T, int>;
+
+    vector<int> from(g.size(), -1), id(g.size(), -1);
+    vector<T> dist(g.size(), INF);
+    priority_queue<Pi, vector<Pi>, greater<>> que;
+
+    dist[s] = 0;
+    que.emplace(dist[s], s);
+
+    while (!que.empty()) {
+        T cost;
+        int idx;
+        tie(cost, idx) = que.top();
+        que.pop();
+
+        if (dist[idx] < cost)
+            continue;
+
+        for (const auto &e : g.g[idx]) {
+            auto next_cost = cost + e.cost;
+            if (dist[e.to] <= next_cost)
+                continue;
+            dist[e.to] = next_cost;
+            from[e.to] = idx;
+            id[e.to] = e.idx;
+            que.emplace(dist[e.to], e.to);
+        }
+    }
+
+    return {dist, from, id};
+}
+#line 1 "graph/graph-template.cpp"
+template <typename T = int>
+struct Edge {
+    int from, to;
+    T cost;
+    int idx;
+    Edge() = default;
+    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
+        : from(from), to(to), cost(cost), idx(idx) {}
+};
+template <typename T = int>
+using Edges = vector<Edge<T>>;
+template <typename T>
+using WeightedGraph = vector<Edges<T>>;
+using UnWeightedGraph = vector<vector<int>>;
+
+template <typename T = int>
+struct Graph {
+    vector<vector<Edge<T>>> g;
+    int es;
+
+    Graph() = default;
+
+    explicit Graph(const int n) : g(n), es(0){};
+
+    size_t size() const { return g.size(); }
+
+    void add_directed_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es++);
+    }
+    void add_edge(const int from, const int to, const T cost = 1) {
+        g[from].emplace_back(from, to, cost, es);
+        g[to].emplace_back(to, from, cost, es++);
+    }
+};
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -279,80 +353,6 @@ signed main() {
     std::cout << std::fixed << std::setprecision(15);
     Main();
     return 0;
-}
-#line 1 "graph/_graph-template.cpp"
-template <typename T = int>
-struct Edge {
-    int from, to;
-    T cost;
-    int idx;
-    Edge() = default;
-    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
-        : from(from), to(to), cost(cost), idx(idx) {}
-};
-template <typename T = int>
-using Edges = vector<Edge<T>>;
-template <typename T>
-using WeightedGraph = vector<Edges<T>>;
-using UnWeightedGraph = vector<vector<int>>;
-
-template <typename T = int>
-struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;
-
-    Graph() = default;
-
-    explicit Graph(const int n) : g(n), es(0){};
-
-    size_t size() const { return g.size(); }
-
-    void add_directed_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es++);
-    }
-    void add_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);
-    }
-};
-#line 1 "graph/dijkstra.cpp"
-template <typename T> struct ShortestPath {
-    vector<T> dist;
-    vector<int> from, id;
-};
-
-template <typename T> ShortestPath<T> dijkstra(const Graph<T> &g, const int s) {
-    constexpr auto INF = numeric_limits<T>::max();
-    using Pi = pair<T, int>;
-
-    vector<int> from(g.size(), -1), id(g.size(), -1);
-    vector<T> dist(g.size(), INF);
-    priority_queue<Pi, vector<Pi>, greater<>> que;
-
-    dist[s] = 0;
-    que.emplace(dist[s], s);
-
-    while (!que.empty()) {
-        T cost;
-        int idx;
-        tie(cost, idx) = que.top();
-        que.pop();
-
-        if (dist[idx] < cost)
-            continue;
-
-        for (const auto &e : g.g[idx]) {
-            auto next_cost = cost + e.cost;
-            if (dist[e.to] <= next_cost)
-                continue;
-            dist[e.to] = next_cost;
-            from[e.to] = idx;
-            id[e.to] = e.idx;
-            que.emplace(dist[e.to], e.to);
-        }
-    }
-
-    return {dist, from, id};
 }
 #line 6 "test/dijkstra.test.cpp"
 

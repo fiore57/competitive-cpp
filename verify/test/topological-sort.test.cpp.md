@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/topological-sort.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-01 17:20:31+09:00
+    - Last commit date: 2020-09-07 14:40:07+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B</a>
@@ -39,9 +39,9 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/_template/_template.cpp.html">_template/_template.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/_graph-template.cpp.html">graph/_graph-template.cpp</a>
+* :question: <a href="../../library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -52,8 +52,8 @@ layout: default
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B"
 // clang-format off
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
+#include "../template/template.cpp"
+#include "../graph/graph-template.cpp"
 #include "../graph/topological-sort.cpp"
 // clang-format on
 
@@ -80,7 +80,7 @@ void Main() {
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B"
 // clang-format off
-#line 1 "_template/_template.cpp"
+#line 1 "template/template.cpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -280,7 +280,7 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "graph/_graph-template.cpp"
+#line 1 "graph/graph-template.cpp"
 template <typename T = int>
 struct Edge {
     int from, to;
