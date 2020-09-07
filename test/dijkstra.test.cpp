@@ -1,8 +1,8 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
 #include "../graph/dijkstra.cpp"
+#include "../graph/graph-template.cpp"
+#include "../template/template.cpp"
 
 void Main() {
     int N = in();

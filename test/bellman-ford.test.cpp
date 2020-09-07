@@ -1,8 +1,8 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
 #include "../graph/bellman-ford.cpp"
+#include "../graph/graph-template.cpp"
+#include "../template/template.cpp"
 
 void Main() {
     int V = in(), E = in(), r = in();

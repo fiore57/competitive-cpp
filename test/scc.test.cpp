@@ -1,6 +1,6 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C"
-#include "../_template/_template.cpp"
+#include "../template/template.cpp"
 #include "../graph/scc.cpp"
 
 void Main() {

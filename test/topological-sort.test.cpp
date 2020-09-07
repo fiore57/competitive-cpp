@@ -1,8 +1,8 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B"
 // clang-format off
-#include "../_template/_template.cpp"
-#include "../graph/_graph-template.cpp"
+#include "../template/template.cpp"
+#include "../graph/graph-template.cpp"
 #include "../graph/topological-sort.cpp"
 // clang-format on
 

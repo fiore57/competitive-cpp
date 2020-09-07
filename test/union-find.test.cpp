@@ -1,6 +1,6 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
-#include "../_template/_template.cpp"
+#include "../template/template.cpp"
 #include "../structure/union-find.cpp"
 
 void Main() {
