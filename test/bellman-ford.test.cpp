@@ -1,8 +1,10 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
-#include "../graph/bellman-ford.cpp"
-#include "../graph/graph-template.cpp"
+// clang-format off
 #include "../template/template.cpp"
+#include "../graph/graph-template.cpp"
+#include "../graph/bellman-ford.cpp"
+// clang-format on
 
 void Main() {
     int V = in(), E = in(), r = in();

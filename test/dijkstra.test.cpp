@@ -1,8 +1,10 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/12/ALDS1_12_B"
-#include "../graph/dijkstra.cpp"
-#include "../graph/graph-template.cpp"
+// clang-format off
 #include "../template/template.cpp"
+#include "../graph/graph-template.cpp"
+#include "../graph/dijkstra.cpp"
+// clang-format on
 
 void Main() {
     int N = in();
