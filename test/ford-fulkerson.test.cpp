@@ -12,5 +12,5 @@ void Main() {
         int u = in(), v = in(), c = in();
         g.add_edge(u, v, c);
     }
-    cout << g.max_flow(0, V - 1) << '\n';
+    out(g.max_flow(0, V - 1));
 }
