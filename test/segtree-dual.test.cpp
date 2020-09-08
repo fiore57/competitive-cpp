@@ -14,7 +14,6 @@ void Main() {
         int com = in();
         if (com == 0) {
             int s = in(), t = in(), x = in();
-            cin >> s >> t >> x;
             seg.update(s, t + 1, x);
         } else {
             int i = in();
