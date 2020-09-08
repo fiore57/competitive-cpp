@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: template/template.cpp
+# :question: template/template.cpp
 
 <a href="../../index.html">Back to top page</a>
 
@@ -45,6 +45,9 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/lca-doubling.test.cpp.html">test/lca-doubling.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :x: <a href="../../verify/test/segtree-dual.test.cpp.html">test/segtree-dual.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/segtree-lazy.test.cpp.html">test/segtree-lazy.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/segtree-ushi.test.cpp.html">test/segtree-ushi.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 

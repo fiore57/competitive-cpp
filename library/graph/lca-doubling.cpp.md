@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#f8b0b924ebd7046dbfa85a856e4682c8">graph</a>
 * <a href="{{ site.github.repository_url }}/blob/master/graph/lca-doubling.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 14:35:56+09:00
+    - Last commit date: 2020-09-08 14:39:41+09:00
 
 
 
@@ -54,7 +54,7 @@ class DoublingLowestCommonAncestor {
     vector<vector<int>> table;
 
 public:
-    DoublingLowestCommonAncestor(const G &g)
+    explicit DoublingLowestCommonAncestor(const G &g)
         : g(g), depth(g.size()), LOG(32 - __builtin_clz(g.size())) {
         table.assign(LOG, vector<int>(g.size(), -1));
         build();
@@ -125,7 +125,7 @@ class DoublingLowestCommonAncestor {
     vector<vector<int>> table;
 
 public:
-    DoublingLowestCommonAncestor(const G &g)
+    explicit DoublingLowestCommonAncestor(const G &g)
         : g(g), depth(g.size()), LOG(32 - __builtin_clz(g.size())) {
         table.assign(LOG, vector<int>(g.size(), -1));
         build();

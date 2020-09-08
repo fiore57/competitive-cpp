@@ -57,9 +57,12 @@ layout: default
 * :warning: <a href="library/math/divisor.cpp.html">math/divisor.cpp</a>
 * :heavy_check_mark: <a href="library/math/gcdlcm.cpp.html">math/gcdlcm.cpp</a>
 * :warning: <a href="library/math/is-square.cpp.html">math/is-square.cpp</a>
+* :warning: <a href="library/math/matrix.cpp.html">math/matrix.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
+* :warning: <a href="library/math/mypow.cpp.html">math/mypow.cpp</a>
 * :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
 * :warning: <a href="library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
+* :warning: <a href="library/math/random-number.cpp.html">math/random-number.cpp</a>
 
 
 <div id="5e2bab0ecb94c4ea40777733195abe1b"></div>
@@ -70,12 +73,23 @@ layout: default
 * :warning: <a href="library/others/dice.cpp.html">others/dice.cpp</a>
 * :warning: <a href="library/others/didj.cpp.html">others/didj.cpp</a>
 * :warning: <a href="library/others/golden-section-search.cpp.html">others/golden-section-search.cpp</a>
+* :warning: <a href="library/others/run-length-encoding.cpp.html">others/run-length-encoding.cpp</a>
+
+
+<div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
+
+### string
+
+* :warning: <a href="library/string/manacher.cpp.html">string/manacher.cpp</a>
 
 
 <div id="07414f4e15ca943e6cde032dec85d92f"></div>
 
 ### structure
 
+* :x: <a href="library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
+* :heavy_check_mark: <a href="library/structure/segtree-lazy.cpp.html">structure/segtree-lazy.cpp</a>
+* :heavy_check_mark: <a href="library/structure/segtree-ushi.cpp.html">structure/segtree-ushi.cpp</a>
 * :heavy_check_mark: <a href="library/structure/union-find.cpp.html">structure/union-find.cpp</a>
 
 
@@ -83,7 +97,7 @@ layout: default
 
 ### template
 
-* :heavy_check_mark: <a href="library/template/template.cpp.html">template/template.cpp</a>
+* :question: <a href="library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Verify Files
@@ -95,6 +109,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/lca-doubling.test.cpp.html">test/lca-doubling.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
+* :x: <a href="verify/test/segtree-dual.test.cpp.html">test/segtree-dual.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/segtree-lazy.test.cpp.html">test/segtree-lazy.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/segtree-ushi.test.cpp.html">test/segtree-ushi.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
 

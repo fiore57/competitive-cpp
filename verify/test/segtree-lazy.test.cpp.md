@@ -25,22 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/bellman-ford.test.cpp
+# :heavy_check_mark: test/segtree-lazy.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/bellman-ford.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 14:48:03+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/segtree-lazy.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 14:59:26+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
-* :heavy_check_mark: <a href="../../library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
+* :heavy_check_mark: <a href="../../library/structure/segtree-lazy.cpp.html">structure/segtree-lazy.cpp</a>
 * :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
@@ -50,32 +49,27 @@ layout: default
 {% raw %}
 ```cpp
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 // clang-format off
 #include "../template/template.cpp"
-#include "../graph/graph-template.cpp"
-#include "../graph/bellman-ford.cpp"
+#include "../structure/segtree-lazy.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in(), r = in();
-
-    Edges<int> edges;
-    rep(i, E) {
-        int s = in(), t = in(), d = in();
-        edges.emplace_back(s, t, d);
-    }
-    auto v = bellman_ford(edges, V, r);
-    if (v.empty()) {
-        out("NEGATIVE CYCLE");
-        return;
-    }
-
-    for (const auto e : v) {
-        if (e == numeric_limits<int>::max())
-            out("INF");
-        else
-            out(e);
+    int n = in(), q = in();
+    int ti = (1ll << 31) - 1;
+    int ei = ti;
+    auto f = [](int a, int b) { return min(a, b); };
+    auto g = [ei](int a, int b) { return b == ei ? a : b; };
+    auto h = [ei](int a, int b) { return b == ei ? a : b; };
+    SegmentTree<int, int> seg(n, f, g, h, ti, ei);
+    while (q--) {
+        int com = in(), s = in(), t = in();
+        if (com == 0) {
+            int x = in();
+            seg.update(s, t + 1, x);
+        } else
+            cout << seg.query(s, t + 1) << '\n';
     }
 }
 ```
@@ -84,9 +78,9 @@ void Main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/bellman-ford.test.cpp"
+#line 1 "test/segtree-lazy.test.cpp"
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_F"
 // clang-format off
 #line 1 "template/template.cpp"
 #include <algorithm>
@@ -288,85 +282,153 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "graph/graph-template.cpp"
-template <typename T = int>
-struct Edge {
-    int from, to;
-    T cost;
-    int idx;
-    Edge() = default;
-    Edge(const int from, const int to, const T cost = 1, const int idx = -1)
-        : from(from), to(to), cost(cost), idx(idx) {}
-};
-template <typename T = int>
-using Edges = vector<Edge<T>>;
-template <typename T>
-using WeightedGraph = vector<Edges<T>>;
-using UnWeightedGraph = vector<vector<int>>;
+#line 1 "structure/segtree-lazy.cpp"
+template <typename T, typename E>
+class SegmentTree {
+    using F = function<T(T, T)>;
+    using G = function<T(T, E)>;
+    using H = function<E(E, E)>;
+    int n, height;
+    const F f;
+    const G g;
+    const H h;
+    const T ti;
+    const E ei;
+    vector<T> dat;
+    vector<E> laz;
 
-template <typename T = int>
-struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;
-
-    Graph() = default;
-
-    explicit Graph(const int n) : g(n), es(0){};
-
-    size_t size() const { return g.size(); }
-
-    void add_directed_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es++);
+public:
+    SegmentTree(const int n_, const F f, const G g, const H h, const T ti,
+                const E ei, const vector<T> &v = vector<T>())
+        : f(f), g(g), h(h), ti(ti), ei(ei) {
+        init(n_);
+        if (n_ == (int)v.size())
+            build(n_, v);
     }
-    void add_edge(const int from, const int to, const T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);
+
+private:
+    void init(const int n_) {
+        n = 1;
+        height = 0;
+        while (n < n_)
+            n <<= 1, height++;
+        dat.assign(2 * n, ti);
+        laz.assign(2 * n, ei);
     }
-};
-#line 1 "graph/bellman-ford.cpp"
-template <typename T>
-vector<T> bellman_ford(const Edges<T> &edges, int n, int s) {
-    constexpr auto INF = numeric_limits<T>::max();
-    vector<T> dist(n, INF);
-    dist[s] = 0;
-    rep(i, n - 1) {
-        for (const auto &e : edges) {
-            if (dist[e.from] == INF)
-                continue;
-            dist[e.to] = min(dist[e.to], dist[e.from] + e.cost);
+
+    void build(const int n_, const vector<T> &v) {
+        for (int i = 0; i < n_; i++)
+            dat[n + i] = v[i];
+        for (int i = n - 1; i; i--)
+            dat[i] = f(dat[(i << 1) | 0], dat[(i << 1) | 1]);
+    }
+
+    inline T reflect(const int k) {
+        return laz[k] == ei ? dat[k] : g(dat[k], laz[k]);
+    }
+
+    inline void propagate(const int k) {
+        if (laz[k] == ei)
+            return;
+        laz[(k << 1) | 0] = h(laz[(k << 1) | 0], laz[k]);
+        laz[(k << 1) | 1] = h(laz[(k << 1) | 1], laz[k]);
+        dat[k] = reflect(k);
+        laz[k] = ei;
+    }
+
+    inline void thrust(const int k) {
+        for (int i = height; i; i--)
+            propagate(k >> i);
+    }
+
+    inline void recalc(int k) {
+        while (k >>= 1)
+            dat[k] = f(reflect((k << 1) | 0), reflect((k << 1) | 1));
+    }
+
+    template <typename C>
+    int find(const int st, const C &check, T &acc, const int k, const int l,
+             const int r) {
+        if (l + 1 == r) {
+            acc = f(acc, reflect(k));
+            return check(acc) ? k - n : -1;
         }
+        propagate(k);
+        int m = (l + r) >> 1;
+        if (m <= st)
+            return find(st, check, acc, (k << 1) | 1, m, r);
+        if (st <= l && !check(f(acc, dat[k]))) {
+            acc = f(acc, dat[k]);
+            return -1;
+        }
+        int vl = find(st, check, acc, (k << 1) | 0, l, m);
+        if (~vl)
+            return vl;
+        return find(st, check, acc, (k << 1) | 1, m, r);
     }
 
-    for (const auto &e : edges) {
-        if (dist[e.from] == INF)
-            continue;
-        if (dist[e.from] + e.cost < dist[e.to])
-            return vector<T>();
+public:
+    void update(int a, int b, const E x) {
+        if (a >= b)
+            return;
+        thrust(a += n);
+        thrust(b += n - 1);
+        for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
+            if (l & 1)
+                laz[l] = h(laz[l], x), l++;
+            if (r & 1)
+                --r, laz[r] = h(laz[r], x);
+        }
+        recalc(a);
+        recalc(b);
     }
-    return dist;
-}
-#line 7 "test/bellman-ford.test.cpp"
+
+    void set_val(int a, const T x) {
+        thrust(a += n);
+        dat[a] = x;
+        laz[a] = ei;
+        recalc(a);
+    }
+
+    T query(int a, int b) {
+        if (a >= b)
+            return ti;
+        thrust(a += n);
+        thrust(b += n - 1);
+        T vl = ti, vr = ti;
+        for (int l = a, r = b + 1; l < r; l >>= 1, r >>= 1) {
+            if (l & 1)
+                vl = f(vl, reflect(l++));
+            if (r & 1)
+                vr = f(reflect(--r), vr);
+        }
+        return f(vl, vr);
+    }
+
+    template <typename C>
+    int find(const int st, const C &check) {
+        T acc = ti;
+        return find(st, check, acc, 1, 0, n);
+    }
+};
+#line 6 "test/segtree-lazy.test.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in(), r = in();
-
-    Edges<int> edges;
-    rep(i, E) {
-        int s = in(), t = in(), d = in();
-        edges.emplace_back(s, t, d);
-    }
-    auto v = bellman_ford(edges, V, r);
-    if (v.empty()) {
-        out("NEGATIVE CYCLE");
-        return;
-    }
-
-    for (const auto e : v) {
-        if (e == numeric_limits<int>::max())
-            out("INF");
-        else
-            out(e);
+    int n = in(), q = in();
+    int ti = (1ll << 31) - 1;
+    int ei = ti;
+    auto f = [](int a, int b) { return min(a, b); };
+    auto g = [ei](int a, int b) { return b == ei ? a : b; };
+    auto h = [ei](int a, int b) { return b == ei ? a : b; };
+    SegmentTree<int, int> seg(n, f, g, h, ti, ei);
+    while (q--) {
+        int com = in(), s = in(), t = in();
+        if (com == 0) {
+            int x = in();
+            seg.update(s, t + 1, x);
+        } else
+            cout << seg.query(s, t + 1) << '\n';
     }
 }
 
