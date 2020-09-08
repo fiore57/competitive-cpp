@@ -74,6 +74,7 @@ layout: default
 * :warning: <a href="library/others/didj.cpp.html">others/didj.cpp</a>
 * :warning: <a href="library/others/golden-section-search.cpp.html">others/golden-section-search.cpp</a>
 * :warning: <a href="library/others/run-length-encoding.cpp.html">others/run-length-encoding.cpp</a>
+* :warning: <a href="library/others/unique.cpp.html">others/unique.cpp</a>
 
 
 <div id="b45cffe084dd3d20d928bee85e7b0f21"></div>
@@ -90,6 +91,7 @@ layout: default
 * :heavy_check_mark: <a href="library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-lazy.cpp.html">structure/segtree-lazy.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-ushi.cpp.html">structure/segtree-ushi.cpp</a>
+* :warning: <a href="library/structure/swag.cpp.html">structure/swag.cpp</a>
 * :heavy_check_mark: <a href="library/structure/union-find.cpp.html">structure/union-find.cpp</a>
 
 
