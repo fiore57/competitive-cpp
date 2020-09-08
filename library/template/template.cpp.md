@@ -43,6 +43,7 @@ layout: default
 * :heavy_check_mark: <a href="../../verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/ford-fulkerson.test.cpp.html">test/ford-fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/lca-doubling.test.cpp.html">test/lca-doubling.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>

@@ -25,21 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/ford-fulkerson.test.cpp
+# :heavy_check_mark: test/lca-doubling.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/ford-fulkerson.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 14:19:32+09:00
+* <a href="{{ site.github.repository_url }}/blob/master/test/lca-doubling.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 14:35:56+09:00
 
 
-* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A</a>
+* see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C">https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/graph/ford-fulkerson.cpp.html">graph/ford-fulkerson.cpp</a>
+* :heavy_check_mark: <a href="../../library/graph/lca-doubling.cpp.html">graph/lca-doubling.cpp</a>
 * :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
@@ -49,20 +49,31 @@ layout: default
 {% raw %}
 ```cpp
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C"
 // clang-format off
 #include "../template/template.cpp"
-#include "../graph/ford-fulkerson.cpp"
+#include "../graph/lca-doubling.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in();
-    FordFulkerson<int> g(V);
-    rep(i, E) {
-        int u = in(), v = in(), c = in();
-        g.add_edge(u, v, c);
+    int n = in();
+    vvint g(n);
+    rep(i, n) {
+        int k = in();
+        rep(j, k) {
+            int c = in();
+            g[i].pb(c);
+            g[c].pb(i);
+        }
     }
-    out(g.max_flow(0, V - 1));
+
+    DoublingLowestCommonAncestor<vvint> lca(g);
+
+    int q = in();
+    while (q--) {
+        int u = in(), v = in();
+        out(lca.query(u, v));
+    }
 }
 ```
 {% endraw %}
@@ -70,9 +81,9 @@ void Main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/ford-fulkerson.test.cpp"
+#line 1 "test/lca-doubling.test.cpp"
 #define PROBLEM                                                                \
-    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A"
+    "https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C"
 // clang-format off
 #line 1 "template/template.cpp"
 #include <algorithm>
@@ -274,90 +285,93 @@ signed main() {
     Main();
     return 0;
 }
-#line 1 "graph/ford-fulkerson.cpp"
-template <typename flow_t>
-class FordFulkerson {
-    struct edge {
-        edge(const int to, const flow_t cap, const int rev, const bool is_rev,
-             const int idx)
-            : to(to), cap(cap), rev(rev), is_rev(is_rev), idx(idx) {}
-        int to;
-        flow_t cap;
-        int rev;
-        bool is_rev;
-        int idx;
-    };
+#line 1 "graph/lca-doubling.cpp"
+template <typename G>
+class DoublingLowestCommonAncestor {
+    const G &g;
+    vector<int> depth;
+    const int LOG;
+    vector<vector<int>> table;
 
 public:
-    vector<vector<edge>> graph;
-
-private:
-    vector<int> used;
-    const flow_t INF;
-    int timestamp;
-
-public:
-    explicit FordFulkerson(const int n)
-        : graph(n), used(n, -1), INF(numeric_limits<flow_t>::max()),
-          timestamp(0) {}
-
-    void add_edge(const int from, const int to, const flow_t cap,
-                  const int idx = -1) {
-        graph[from].emplace_back(to, cap, (int)graph[to].size(), false, idx);
-        graph[to].emplace_back(from, 0, (int)graph[from].size() - 1, true, idx);
+    DoublingLowestCommonAncestor(const G &g)
+        : g(g), depth(g.size()), LOG(32 - __builtin_clz(g.size())) {
+        table.assign(LOG, vector<int>(g.size(), -1));
+        build();
     }
 
-    flow_t dfs(const int idx, const int t, const flow_t flow) {
-        if (idx == t)
-            return flow;
-        used[idx] = timestamp;
-        for (auto &&e : graph[idx]) {
-            if (e.cap > 0 && used[e.to] != timestamp) {
-                flow_t d = dfs(e.to, t, min(flow, e.cap));
-                if (d > 0) {
-                    e.cap -= d;
-                    graph[e.to][e.rev].cap += d;
-                    return d;
-                }
+    int query(int u, int v) const {
+        if (depth[u] > depth[v])
+            swap(u, v);
+
+        for (int i = LOG - 1; i >= 0; --i) {
+            if (((depth[v] - depth[u]) >> i) & 1)
+                v = table[i][v];
+        }
+        if (u == v)
+            return u;
+        for (int i = LOG - 1; i >= 0; --i) {
+            if (table[i][u] != table[i][v]) {
+                u = table[i][u];
+                v = table[i][v];
             }
         }
-        return 0;
+        return table[0][u];
     }
 
-    flow_t max_flow(const int s, const int t) {
-        flow_t flow = 0;
-        for (flow_t f; (f = dfs(s, t, INF)) > 0; timestamp++) {
-            flow += f;
+    int get_dist(const int u, const int v) const {
+        return depth[u] + depth[v] - 2 * depth[query(u, v)];
+    }
+
+    bool is_on_path(const int u, const int v, const int a) const {
+        return get_dist(u, a) + get_dist(a, v) == get_dist(u, v);
+    }
+
+private:
+    void build() {
+        dfs(0, -1, 0);
+        for (int k = 0; k + 1 < LOG; k++) {
+            const int sz = table[k].size();
+            for (int i = 0; i < sz; ++i) {
+                if (table[k][i] == -1)
+                    table[k + 1][i] = -1;
+                else
+                    table[k + 1][i] = table[k][table[k][i]];
+            }
         }
-        return flow;
+    }
+
+    void dfs(const int idx, const int par, const int d) {
+        table[0][idx] = par;
+        depth[idx] = d;
+        for (const auto &to : g[idx]) {
+            if (to != par)
+                dfs(to, idx, d + 1);
+        }
     }
 };
-template <typename T>
-ostream &operator<<(ostream &os, const FordFulkerson<T> &f) {
-    os << "\n=== vvv ===\n";
-    for (size_t i = 0; i < f.graph.size(); ++i) {
-        for (const auto &e : f.graph[i]) {
-            if (e.is_rev)
-                continue;
-            auto &&rev_e = f.graph[e.to][e.rev];
-            os << i << "->" << e.to << " (flow: " << rev_e.cap << "/"
-               << e.cap + rev_e.cap << ")" << '\n';
-        }
-    }
-    os << "=== ^^^ ===";
-    return os;
-}
-#line 6 "test/ford-fulkerson.test.cpp"
+#line 6 "test/lca-doubling.test.cpp"
 // clang-format on
 
 void Main() {
-    int V = in(), E = in();
-    FordFulkerson<int> g(V);
-    rep(i, E) {
-        int u = in(), v = in(), c = in();
-        g.add_edge(u, v, c);
+    int n = in();
+    vvint g(n);
+    rep(i, n) {
+        int k = in();
+        rep(j, k) {
+            int c = in();
+            g[i].pb(c);
+            g[c].pb(i);
+        }
     }
-    out(g.max_flow(0, V - 1));
+
+    DoublingLowestCommonAncestor<vvint> lca(g);
+
+    int q = in();
+    while (q--) {
+        int u = in(), v = in();
+        out(lca.query(u, v));
+    }
 }
 
 ```

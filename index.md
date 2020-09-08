@@ -44,6 +44,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/ford-fulkerson.cpp.html">graph/ford-fulkerson.cpp</a>
 * :heavy_check_mark: <a href="library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 * :heavy_check_mark: <a href="library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
+* :heavy_check_mark: <a href="library/graph/lca-doubling.cpp.html">graph/lca-doubling.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
 * :heavy_check_mark: <a href="library/graph/topological-sort.cpp.html">graph/topological-sort.cpp</a>
 
@@ -55,6 +56,7 @@ layout: default
 * :warning: <a href="library/math/combination.cpp.html">math/combination.cpp</a>
 * :warning: <a href="library/math/divisor.cpp.html">math/divisor.cpp</a>
 * :heavy_check_mark: <a href="library/math/gcdlcm.cpp.html">math/gcdlcm.cpp</a>
+* :warning: <a href="library/math/is-square.cpp.html">math/is-square.cpp</a>
 * :warning: <a href="library/math/modint.cpp.html">math/modint.cpp</a>
 * :warning: <a href="library/math/prime-factorization.cpp.html">math/prime-factorization.cpp</a>
 * :warning: <a href="library/math/prime-sieve.cpp.html">math/prime-sieve.cpp</a>
@@ -67,6 +69,7 @@ layout: default
 * :warning: <a href="library/others/compress.cpp.html">others/compress.cpp</a>
 * :warning: <a href="library/others/dice.cpp.html">others/dice.cpp</a>
 * :warning: <a href="library/others/didj.cpp.html">others/didj.cpp</a>
+* :warning: <a href="library/others/golden-section-search.cpp.html">others/golden-section-search.cpp</a>
 
 
 <div id="07414f4e15ca943e6cde032dec85d92f"></div>
@@ -90,6 +93,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/ford-fulkerson.test.cpp.html">test/ford-fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/lca-doubling.test.cpp.html">test/lca-doubling.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/union-find.test.cpp.html">test/union-find.test.cpp</a>
