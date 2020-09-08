@@ -87,7 +87,7 @@ layout: default
 
 ### structure
 
-* :x: <a href="library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
+* :heavy_check_mark: <a href="library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-lazy.cpp.html">structure/segtree-lazy.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-ushi.cpp.html">structure/segtree-ushi.cpp</a>
 * :heavy_check_mark: <a href="library/structure/union-find.cpp.html">structure/union-find.cpp</a>
@@ -97,7 +97,7 @@ layout: default
 
 ### template
 
-* :question: <a href="library/template/template.cpp.html">template/template.cpp</a>
+* :heavy_check_mark: <a href="library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Verify Files
@@ -109,7 +109,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/lca-doubling.test.cpp.html">test/lca-doubling.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
-* :x: <a href="verify/test/segtree-dual.test.cpp.html">test/segtree-dual.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/segtree-dual.test.cpp.html">test/segtree-dual.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/segtree-lazy.test.cpp.html">test/segtree-lazy.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/segtree-ushi.test.cpp.html">test/segtree-ushi.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>

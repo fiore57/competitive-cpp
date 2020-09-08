@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: test/segtree-dual.test.cpp
+# :heavy_check_mark: test/segtree-dual.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/segtree-dual.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 14:59:26+09:00
+    - Last commit date: 2020-09-08 15:05:11+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_D</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
-* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
+* :heavy_check_mark: <a href="../../library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
+* :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -64,7 +64,6 @@ void Main() {
         int com = in();
         if (com == 0) {
             int s = in(), t = in(), x = in();
-            cin >> s >> t >> x;
             seg.update(s, t + 1, x);
         } else {
             int i = in();
@@ -354,7 +353,6 @@ void Main() {
         int com = in();
         if (com == 0) {
             int s = in(), t = in(), x = in();
-            cin >> s >> t >> x;
             seg.update(s, t + 1, x);
         } else {
             int i = in();
