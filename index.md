@@ -41,6 +41,7 @@ layout: default
 * :heavy_check_mark: <a href="library/graph/bellman-ford.cpp.html">graph/bellman-ford.cpp</a>
 * :heavy_check_mark: <a href="library/graph/dijkstra.cpp.html">graph/dijkstra.cpp</a>
 * :heavy_check_mark: <a href="library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
+* :heavy_check_mark: <a href="library/graph/ford-fulkerson.cpp.html">graph/ford-fulkerson.cpp</a>
 * :heavy_check_mark: <a href="library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 * :heavy_check_mark: <a href="library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
 * :heavy_check_mark: <a href="library/graph/scc.cpp.html">graph/scc.cpp</a>
@@ -63,6 +64,7 @@ layout: default
 
 ### others
 
+* :warning: <a href="library/others/compress.cpp.html">others/compress.cpp</a>
 * :warning: <a href="library/others/dice.cpp.html">others/dice.cpp</a>
 * :warning: <a href="library/others/didj.cpp.html">others/didj.cpp</a>
 
@@ -86,6 +88,7 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/bellman-ford.test.cpp.html">test/bellman-ford.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/dijkstra.test.cpp.html">test/dijkstra.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/find-directed-graph-cycle.test.cpp.html">test/find-directed-graph-cycle.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/ford-fulkerson.test.cpp.html">test/ford-fulkerson.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/gcdlcm.test.cpp.html">test/gcdlcm.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/scc.test.cpp.html">test/scc.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/topological-sort.test.cpp.html">test/topological-sort.test.cpp</a>
