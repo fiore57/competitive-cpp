@@ -6,7 +6,7 @@ class DoublingLowestCommonAncestor {
     vector<vector<int>> table;
 
 public:
-    DoublingLowestCommonAncestor(const G &g)
+    explicit DoublingLowestCommonAncestor(const G &g)
         : g(g), depth(g.size()), LOG(32 - __builtin_clz(g.size())) {
         table.assign(LOG, vector<int>(g.size(), -1));
         build();
