@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/graph/scc.cpp.html">graph/scc.cpp</a>
-* :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code

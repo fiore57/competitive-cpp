@@ -40,7 +40,7 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
-* :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
+* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
