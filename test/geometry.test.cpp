@@ -1,5 +1,6 @@
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_B"
+#define ERROR "1e-8"
 // clang-format off
 #include "../template/template.cpp"
 #include "../others/geometry.cpp"
@@ -13,10 +14,10 @@ void Main() {
     Point p1(xp1, yp1), p2(xp2, yp2);
     Line l(p1, p2);
 
-    rep(i, q) {
+    while (q--) {
         int x = in(), y = in();
         Point p(x, y);
         Point r = reflection(p, l);
-        cout << r.x << " " << r.y << endl;
+        out(r.x, r.y);
     }
 }

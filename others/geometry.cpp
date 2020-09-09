@@ -10,7 +10,9 @@ constexpr ld EPS = 1e-10;
     を返す。基本的にEPS込みの評価はこれで行う。
     不等式は、加減算に直してこれに適用する
 */
-constexpr int sgn(const ld x) { return (x < -EPS ? -1 : (x > EPS ? +1 : 0)); }
+constexpr int sgn(const ld x) {
+    return (x < -EPS ? -1 : (x > EPS ? +1 : 0));
+}
 
 struct Point {
     // 2次元ベクトル
@@ -83,7 +85,9 @@ struct Point {
     constexpr ld angle() const { return atan2(y, x); }
 };
 
-inline constexpr Point operator*(ld a, const Point &b) { return b * a; }
+inline constexpr Point operator*(ld a, const Point &b) {
+    return b * a;
+}
 template <class Char>
 inline std::basic_ostream<Char> &operator<<(std::basic_ostream<Char> &os,
                                             const Point &v) {
@@ -166,8 +170,9 @@ struct Line {
 using Ray = Line;     // 半直線
 using Segment = Line; // 線分
 
-template <class T> class Result {
-  public:
+template <class T>
+class Result {
+public:
     Result() = default;
     Result(const T &val) : value(val), isEnable(false) {}
     constexpr bool ok() const { return isEnable; }
@@ -178,7 +183,7 @@ template <class T> class Result {
         return value;
     }
 
-  private:
+private:
     T value;
     const bool isEnable = false;
 };
