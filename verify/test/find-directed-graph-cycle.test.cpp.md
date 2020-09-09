@@ -42,7 +42,7 @@ layout: default
 * :heavy_check_mark: <a href="../../library/graph/find-directed-graph-cycle.cpp.html">graph/find-directed-graph-cycle.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/get-shortest-path.cpp.html">graph/get-shortest-path.cpp</a>
 * :heavy_check_mark: <a href="../../library/graph/graph-template.cpp.html">graph/graph-template.cpp</a>
-* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
+* :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code

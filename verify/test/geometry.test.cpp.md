@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: test/geometry.test.cpp
+# :heavy_check_mark: test/geometry.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/geometry.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 00:52:04+09:00
+    - Last commit date: 2020-09-10 01:47:57+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_B">https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_B</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :x: <a href="../../library/others/geometry.cpp.html">others/geometry.cpp</a>
-* :question: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
+* :heavy_check_mark: <a href="../../library/others/geometry.cpp.html">others/geometry.cpp</a>
+* :heavy_check_mark: <a href="../../library/template/template.cpp.html">template/template.cpp</a>
 
 
 ## Code
@@ -50,6 +50,7 @@ layout: default
 ```cpp
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_B"
+#define ERROR "1e-8"
 // clang-format off
 #include "../template/template.cpp"
 #include "../others/geometry.cpp"
@@ -63,11 +64,11 @@ void Main() {
     Point p1(xp1, yp1), p2(xp2, yp2);
     Line l(p1, p2);
 
-    rep(i, q) {
+    while (q--) {
         int x = in(), y = in();
         Point p(x, y);
         Point r = reflection(p, l);
-        cout << r.x << " " << r.y << endl;
+        out(r.x, r.y);
     }
 }
 
@@ -80,6 +81,7 @@ void Main() {
 #line 1 "test/geometry.test.cpp"
 #define PROBLEM                                                                \
     "https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/1/CGL_1_B"
+#define ERROR "1e-8"
 // clang-format off
 #line 1 "template/template.cpp"
 #include <algorithm>
@@ -294,7 +296,9 @@ constexpr ld EPS = 1e-10;
     を返す。基本的にEPS込みの評価はこれで行う。
     不等式は、加減算に直してこれに適用する
 */
-constexpr int sgn(const ld x) { return (x < -EPS ? -1 : (x > EPS ? +1 : 0)); }
+constexpr int sgn(const ld x) {
+    return (x < -EPS ? -1 : (x > EPS ? +1 : 0));
+}
 
 struct Point {
     // 2次元ベクトル
@@ -367,7 +371,9 @@ struct Point {
     constexpr ld angle() const { return atan2(y, x); }
 };
 
-inline constexpr Point operator*(ld a, const Point &b) { return b * a; }
+inline constexpr Point operator*(ld a, const Point &b) {
+    return b * a;
+}
 template <class Char>
 inline std::basic_ostream<Char> &operator<<(std::basic_ostream<Char> &os,
                                             const Point &v) {
@@ -450,8 +456,9 @@ struct Line {
 using Ray = Line;     // 半直線
 using Segment = Line; // 線分
 
-template <class T> class Result {
-  public:
+template <class T>
+class Result {
+public:
     Result() = default;
     Result(const T &val) : value(val), isEnable(false) {}
     constexpr bool ok() const { return isEnable; }
@@ -462,7 +469,7 @@ template <class T> class Result {
         return value;
     }
 
-  private:
+private:
     T value;
     const bool isEnable = false;
 };
@@ -539,7 +546,7 @@ Point projection(const Point &a, const Line &l) {
 Point reflection(const Point &a, const Line &l) {
     return a + 2 * (projection(a, l) - a);
 }
-#line 6 "test/geometry.test.cpp"
+#line 7 "test/geometry.test.cpp"
 // clang-format on
 
 void Main() {
@@ -550,11 +557,11 @@ void Main() {
     Point p1(xp1, yp1), p2(xp2, yp2);
     Line l(p1, p2);
 
-    rep(i, q) {
+    while (q--) {
         int x = in(), y = in();
         Point p(x, y);
         Point r = reflection(p, l);
-        cout << r.x << " " << r.y << endl;
+        out(r.x, r.y);
     }
 }
 

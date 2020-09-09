@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :x: others/geometry.cpp
+# :heavy_check_mark: others/geometry.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#5e2bab0ecb94c4ea40777733195abe1b">others</a>
 * <a href="{{ site.github.repository_url }}/blob/master/others/geometry.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 00:26:47+09:00
+    - Last commit date: 2020-09-10 01:47:57+09:00
 
 
 
 
 ## Verified with
 
-* :x: <a href="../../verify/test/geometry.test.cpp.html">test/geometry.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/geometry.test.cpp.html">test/geometry.test.cpp</a>
 
 
 ## Code
@@ -58,7 +58,9 @@ constexpr ld EPS = 1e-10;
     を返す。基本的にEPS込みの評価はこれで行う。
     不等式は、加減算に直してこれに適用する
 */
-constexpr int sgn(const ld x) { return (x < -EPS ? -1 : (x > EPS ? +1 : 0)); }
+constexpr int sgn(const ld x) {
+    return (x < -EPS ? -1 : (x > EPS ? +1 : 0));
+}
 
 struct Point {
     // 2次元ベクトル
@@ -131,7 +133,9 @@ struct Point {
     constexpr ld angle() const { return atan2(y, x); }
 };
 
-inline constexpr Point operator*(ld a, const Point &b) { return b * a; }
+inline constexpr Point operator*(ld a, const Point &b) {
+    return b * a;
+}
 template <class Char>
 inline std::basic_ostream<Char> &operator<<(std::basic_ostream<Char> &os,
                                             const Point &v) {
@@ -214,8 +218,9 @@ struct Line {
 using Ray = Line;     // 半直線
 using Segment = Line; // 線分
 
-template <class T> class Result {
-  public:
+template <class T>
+class Result {
+public:
     Result() = default;
     Result(const T &val) : value(val), isEnable(false) {}
     constexpr bool ok() const { return isEnable; }
@@ -226,7 +231,7 @@ template <class T> class Result {
         return value;
     }
 
-  private:
+private:
     T value;
     const bool isEnable = false;
 };
@@ -323,7 +328,9 @@ constexpr ld EPS = 1e-10;
     を返す。基本的にEPS込みの評価はこれで行う。
     不等式は、加減算に直してこれに適用する
 */
-constexpr int sgn(const ld x) { return (x < -EPS ? -1 : (x > EPS ? +1 : 0)); }
+constexpr int sgn(const ld x) {
+    return (x < -EPS ? -1 : (x > EPS ? +1 : 0));
+}
 
 struct Point {
     // 2次元ベクトル
@@ -396,7 +403,9 @@ struct Point {
     constexpr ld angle() const { return atan2(y, x); }
 };
 
-inline constexpr Point operator*(ld a, const Point &b) { return b * a; }
+inline constexpr Point operator*(ld a, const Point &b) {
+    return b * a;
+}
 template <class Char>
 inline std::basic_ostream<Char> &operator<<(std::basic_ostream<Char> &os,
                                             const Point &v) {
@@ -479,8 +488,9 @@ struct Line {
 using Ray = Line;     // 半直線
 using Segment = Line; // 線分
 
-template <class T> class Result {
-  public:
+template <class T>
+class Result {
+public:
     Result() = default;
     Result(const T &val) : value(val), isEnable(false) {}
     constexpr bool ok() const { return isEnable; }
@@ -491,7 +501,7 @@ template <class T> class Result {
         return value;
     }
 
-  private:
+private:
     T value;
     const bool isEnable = false;
 };
