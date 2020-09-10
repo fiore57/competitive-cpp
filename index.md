@@ -89,6 +89,7 @@ layout: default
 
 ### structure
 
+* :warning: <a href="library/structure/fenwick-tree.cpp.html">structure/fenwick-tree.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-dual.cpp.html">structure/segtree-dual.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-lazy.cpp.html">structure/segtree-lazy.cpp</a>
 * :heavy_check_mark: <a href="library/structure/segtree-ushi.cpp.html">structure/segtree-ushi.cpp</a>
